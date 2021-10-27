@@ -24,7 +24,7 @@ const Cutest = () => {
 
 	return (
 		<div>
-		<h2> Cutest Hamster </h2>
+		<h2> Defending Champion </h2>
 		
 		{ cutestHamster? 
 		

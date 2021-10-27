@@ -22,7 +22,8 @@ img {
 }
 
 .hamster-card {
-	max-width: 15em;
+
+	width: 15em;
 	padding: 1em;
 	margin: 1em;
 	border-radius: 5px;
@@ -48,7 +49,7 @@ aside {
 	font-weight: 600;
 }
 
-aside:hover {
+aside:hover, .game-card:hover {
 	cursor: pointer;
 }
 
@@ -72,11 +73,18 @@ aside:hover {
 	flex-direction: column;
 	justify-content: center;
 	padding: 0 3em;
+	border-radius: 5px;
 }
 
 .gallery-container {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
+}
+
+
+.contestants {
+	display: flex;
+	flex-direction: row;
 }
 
 .add-form {
