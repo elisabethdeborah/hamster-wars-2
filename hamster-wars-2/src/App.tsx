@@ -9,7 +9,6 @@ function App() {
     <div className="App">
       <Cutest />
 	  <Gallery />
-	  <AddForm />
     </div>
   );
 }

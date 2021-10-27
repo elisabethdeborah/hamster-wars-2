@@ -45,8 +45,10 @@ router.get('/random', async(req, res) => {
 router.get('/:id', async(req, res) => { 
     let maybeHamster = await getOne(req.params.id)
     if (maybeHamster) {
+		console.log(maybeHamster);
         res.status(200).send(maybeHamster) 
     } else {
+		console.log('GET id failed');
         res.sendStatus(404)
     }
 })

@@ -1,31 +1,17 @@
 
-import e from "express"
-import { useState, useEffect } from "react"
-import Hamster from '../models/HamsterInterface'
+
+import { FunctionComponent } from "react"
+import AddFormProps from "../models/AddFormProps"
 
 
-const AddForm = () => {
-
-/* 	const [ cutestHamster, setCutestHamster ] = useState<Hamster[] | null>(null) */
-
-
-/* 	async function sendRequest(saveData:any) {
-		const response = await fetch('/hamsters/cutest')
-		const data = await response.json()
-		console.log(data, typeof data)
-		saveData(data)
-	}
-
-
-	useEffect(() => {
-		sendRequest(setCutestHamster)
-		
-	}, []) */
-	// 'wins', 'defeats', 'games'
+const AddForm: FunctionComponent<AddFormProps> = ({show, set}) => {
 	
 	return (
+		<>
+		<section className="form-background-overlay"></section>
 		<form className="add-form" action="/hamsters/" method="POST">
-		<h2> Add Hamster </h2>
+		<aside onClick={() => set(!show)}>Close</aside>
+		<h1> Add Hamster </h1>
 		<input type="text" name="name" placeholder="Hamster Name" required />
 		<input type="text" name="loves" placeholder="Hamster Loves to ..." required />
 		<input type="number" name="age" placeholder="Hamster age" required />
@@ -36,6 +22,7 @@ const AddForm = () => {
 		<input type="hidden" name="games" value='0' />
 		<input type="submit" value="Add" onSubmit={(e) => e.preventDefault()} />
 		</form>
+		</>
 	)
 }
 

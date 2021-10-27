@@ -1,6 +1,8 @@
 :root {
 	--background: #323333;
 	--text: #c7c6c6;
+	--orange: #c7ca19d0;
+	--shadow: 2px 5px 10px #000;
 }
 
 .App {
@@ -14,17 +16,18 @@
 }
 
 img {
-	width: 15em;
 	margin-top: 1.5em;
+	max-height: 10em;
+	max-width: 15em;
 }
 
 .hamster-card {
-	border: 1px solid grey;
 	max-width: 15em;
 	padding: 1em;
 	margin: 1em;
 	border-radius: 5px;
 	position: relative;
+	box-shadow: var(--shadow);
 }
 
 .hamster-card li {
@@ -42,6 +45,11 @@ aside {
 	position: absolute;
 	top: 1em;
 	right: 1em;
+	font-weight: 600;
+}
+
+aside:hover {
+	cursor: pointer;
 }
 
 .hamster-card li > h3:not(.hamster-name ){
@@ -50,6 +58,20 @@ aside {
 
 .hamster-name {
 	margin-right: -1em;
+}
+
+.info-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #c7c6c6d6;
+    color: #323333;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 3em;
 }
 
 .gallery-container {
@@ -64,7 +86,24 @@ aside {
 	height: 500px;
 	justify-content: space-evenly;
 	width: 400px;
-	border: 2px solid var(--text);
+	margin: 6em auto;
+	border-radius: 5px;
+	padding: 2em 0;
+	position: absolute;
+    background-color: var(--orange);
+	color: var(--background);
+    z-index: 1;
+	box-shadow: var(--shadow);
+}
+
+.form-background-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: #323333ab;
+	z-index: 1;
 }
 
 .add-form input {
@@ -72,14 +111,25 @@ aside {
 	font-size: 1em;
 	padding: .5em 1em;
 	border-radius: 100px;
+	background-color: #ffffffaf;
 }
 
 .add-form input:focus {
 	outline: none;
-	border: 3px solid rgb(135, 216, 212);
+	border: 3px inset rgb(53, 175, 5);
 }
 
 .add-form input:last-child{
 	width: 75%;
-	filter: invert();
+	background-color: var(--background);
+	color: var(--text);
+}
+
+.add-form input:last-child:hover {
+	cursor: pointer;
+	filter: brightness(1.4);
+}
+
+button:hover {
+	cursor: pointer;
 }

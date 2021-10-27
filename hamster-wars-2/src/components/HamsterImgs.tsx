@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 
-type Cutest =[{}];
 
 const HamsterImgs = () => {
 
