@@ -1,0 +1,85 @@
+:root {
+	--background: #323333;
+	--text: #c7c6c6;
+}
+
+.App {
+  text-align: center;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+img {
+	width: 15em;
+	margin-top: 1.5em;
+}
+
+.hamster-card {
+	border: 1px solid grey;
+	max-width: 15em;
+	padding: 1em;
+	margin: 1em;
+	border-radius: 5px;
+	position: relative;
+}
+
+.hamster-card li {
+	width: 70%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	text-align: left;
+	margin: 0 auto;
+}
+
+aside {
+	display: inline-block;
+	position: absolute;
+	top: 1em;
+	right: 1em;
+}
+
+.hamster-card li > h3:not(.hamster-name ){
+	flex-grow: 1;
+}
+
+.hamster-name {
+	margin-right: -1em;
+}
+
+.gallery-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.add-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 500px;
+	justify-content: space-evenly;
+	width: 400px;
+	border: 2px solid var(--text);
+}
+
+.add-form input {
+	width: 65%;
+	font-size: 1em;
+	padding: .5em 1em;
+	border-radius: 100px;
+}
+
+.add-form input:focus {
+	outline: none;
+	border: 3px solid rgb(135, 216, 212);
+}
+
+.add-form input:last-child{
+	width: 75%;
+	filter: invert();
+}
