@@ -70,8 +70,10 @@ router.post('/', async(req, res) => {
 
 //PUT hamsters/:id -> req.body: obj med ändringar. respons: statuskod
 router.put('/:id', async(req, res) => {
+	
     let isHamster = await getOne(req.params.id)
     const maybeHamster = req.body
+	console.log('PUT id:', req.params.id, 'body:', maybeHamster);
     try {
         //kontrollera att hamster med angivet id finns
         if (!isHamster) {
@@ -81,6 +83,7 @@ router.put('/:id', async(req, res) => {
             res.sendStatus(400)
         } else {
         await updateOne(req.params.id, maybeHamster)
+		console.log('updated hamster: ', maybeHamster);
         res.sendStatus(200)
         }
     } catch (error) {
@@ -198,7 +201,7 @@ const addOne = async( body ) => {
 
 const updateOne = async(id, maybeHamster) => {
 	const docRef = db.collection(HAMSTERS).doc(id)
-    console.log(`Updated hamster named ${maybeHamster.name} with id ${docRef.id}.`);
+    console.log(`Updated hamster with id ${docRef.id}.`);
     const settings = { merge: true }
 	return docRef.set(maybeHamster, settings)
 }

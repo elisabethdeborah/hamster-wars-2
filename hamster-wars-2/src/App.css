@@ -19,6 +19,12 @@ img {
 	margin-top: 1.5em;
 	max-height: 10em;
 	max-width: 15em;
+	justify-self: center;
+	align-self: center;
+}
+
+.gallery-container > section {
+	position: relative;
 }
 
 .hamster-card {
@@ -36,10 +42,17 @@ img {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-evenly;
 	text-align: left;
 	margin: 0 auto;
 }
+
+
+
+.hamster-card li:first-child {
+	justify-content: center;
+}
+
+
 
 aside {
 	display: inline-block;
@@ -53,13 +66,7 @@ aside:hover, .game-card:hover {
 	cursor: pointer;
 }
 
-.hamster-card li > h3:not(.hamster-name ){
-	flex-grow: 1;
-}
 
-.hamster-name {
-	margin-right: -1em;
-}
 
 .info-overlay {
     position: absolute;
