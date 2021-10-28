@@ -11,7 +11,6 @@ const Cutest = () => {
 	async function sendRequest(saveData:any) {
 		const response = await fetch('/hamsters/cutest')
 		const data = await response.json()
-		console.log(data, typeof data)
 		saveData(data)
 	}
 
@@ -20,6 +19,30 @@ const Cutest = () => {
 		sendRequest(setCutestHamster)
 		
 	}, [])
+
+
+/////
+
+/////
+
+///////
+
+////////
+
+////////////
+
+// 				DUBBELKOLLA VAD SOM HÄNDER NÄR FLERA ÄR CUTEST, FUNKAR NEDAN?
+
+
+
+
+
+
+
+	if (cutestHamster && cutestHamster?.length > 1) {
+		let getRandomCutie:Hamster = cutestHamster[Math.floor(Math.random()*cutestHamster.length)]
+		setCutestHamster([getRandomCutie])
+	}
 
 
 	return (

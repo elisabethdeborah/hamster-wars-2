@@ -18,7 +18,6 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 	const [ showResult, setShowResult ] = useState<boolean>(false)
 	const [ winner, setWinner] = useState<Hamster|null>(null)
 	const [ loser, setLoser ] = useState<Hamster|null>(null)
-	const [ updateInfo, setUpdateInfo ] = useState<Hamster[] | null>(null)
 	const [ doneLoadingUpdate, setDoneLoadingUpdate ] = useState<boolean>(false)
 
 	async function requestRandom(saveData:any) {
@@ -74,6 +73,17 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 				"Content-Type": "application/json"
 			}
 		})
+
+		//POST new match
+		await fetch("/matches/", {
+			method: 'post', 
+			body:JSON.stringify({ winnerId: winner.id, loserId: loser.id}),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+
+
 		}
 
 
@@ -123,7 +133,6 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 					<article onClick={!showResult? () => handleVote(x): undefined} className={showResult?'hamster-card': 'hamster-card game-card'} key={x.id} >
 					<li><img src={`/img/${x.imgName}`} alt={x.name} /></li>
 					<h2 className="hamster-name">{x.name}</h2>
-					{console.log('render1')}
 					</article>
 				))
 					: null
@@ -135,7 +144,7 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 					<>
 					{contestants?.[0] === winner? 
 					<>
-					<article className={showResult?'hamster-card': 'hamster-card game-card'} key={winner.id} >
+					<article className={'hamster-card'} key={winner.id} >
 						<li><img src={`/img/${winner.imgName}`} alt={winner.name} /></li>
 						<h2 className="hamster-name">{winner.name}</h2>
 						<article className="info-overlay">
@@ -145,7 +154,7 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 							<li><h3>Games: </h3> {winner.games} </li>
 						</article>
 					</article>
-					<article className={showResult?'hamster-card': 'hamster-card game-card'} key={loser.id} >
+					<article className={'hamster-card'} key={loser.id} >
 						<li><img src={`/img/${loser.imgName}`} alt={loser.name} /></li>
 						<h2 className="hamster-name">{loser.name}</h2>
 						<article className="info-overlay">
@@ -158,7 +167,7 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 					</>
 				: 
 				<>
-					<article className={showResult?'hamster-card': 'hamster-card game-card'} key={loser.id} >
+					<article className={'hamster-card'} key={loser.id} >
 						<li><img src={`/img/${loser.imgName}`} alt={loser.name} /></li>
 						<h2 className="hamster-name">{loser.name}</h2>
 						<article className="info-overlay">
@@ -168,7 +177,7 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 							<li><h3>Games: </h3> {loser.games} </li>
 						</article>
 					</article>
-					<article className={showResult?'hamster-card': 'hamster-card game-card'} key={winner.id} >
+					<article className={'hamster-card'} key={winner.id} >
 						<li><img src={`/img/${winner.imgName}`} alt={winner.name} /></li>
 						<h2 className="hamster-name">{winner.name}</h2>
 						<article className="info-overlay">

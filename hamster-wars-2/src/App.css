@@ -23,6 +23,14 @@ img {
 	align-self: center;
 }
 
+.matches-img {
+	max-height: 4em;
+	max-width: 5em;
+	justify-self: center;
+	align-self: center;
+	margin: 0;
+}
+
 .gallery-container > section {
 	position: relative;
 }
@@ -147,4 +155,37 @@ aside:hover, .game-card:hover {
 
 button:hover {
 	cursor: pointer;
+}
+
+.statistik-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.matches-history {
+	display: flex;
+	flex-direction: column;
+	width: 70vw;
+	max-width: 1000px;
+	align-items: center;
+}
+
+.matches-history article {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	border: 2px solid var(--text);
+	border-radius: 5px;
+	margin: 1em;
+	width: 100%;
+	flex:1
+}
+
+.matches-history article li {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
 }

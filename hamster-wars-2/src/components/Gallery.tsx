@@ -1,7 +1,9 @@
 
 import { useState, useEffect } from "react"
 import Hamster from '../models/HamsterInterface'
+import Matches from '../models/MatchInterface'
 import AddForm from './AddForm'
+import Card from "./Card"
 
 
 /* 
@@ -17,15 +19,17 @@ Tänk på att inte visa för mycket information direkt. Låt användaren klicka/
 VG:
 Förutom G-nivån ska man kunna välja en hamster, och se vilka den har besegrat. (/matchWinners)
 
-Statistik
-Visa de 5 hamstrar som vunnit mest, och de 5 hamstrar som förlorat mest.
-
 Historik
 Visa resultatet från de senaste matcherna: bild och namn för både vinnare och förlorare.
 
 */
 
+
+
 const Gallery = () => {
+
+	//const [ matches, setMatches ] = useState<Match[] | null>(null)
+
 
 	const [ allHamsters, setAllHamsters ] = useState<Hamster[] | null>(null)
 	const [ showDisplayHamster, setShowDisplayHamster ] = useState<boolean>(false)
@@ -35,10 +39,15 @@ const Gallery = () => {
 	async function sendRequest(saveData:any) {
 		const response = await fetch('/hamsters')
 		const data = await response.json()
-		console.log(data, typeof data)
 		saveData(data)
 	}
 
+	const getMatchesWon = async(x:Hamster) => {
+		let response = await fetch("/matchWinners/"+x.id, {method: 'get'})
+		let matchesWon = await response.json()
+		console.log('matchesWon:', matchesWon);
+		//setMatches(matchesWon)	
+	}
 
 
 	useEffect(() => {
@@ -47,6 +56,7 @@ const Gallery = () => {
 
 	const handleShowInfo = (x:Hamster) => {
 		fetch("/hamsters/"+x.id, {method: 'get'})
+		getMatchesWon(x)
 		setShowDisplayHamster(!showDisplayHamster)
 		setDisplayHamster(x)
 	}
@@ -64,12 +74,12 @@ const Gallery = () => {
 	//VÄLJ HAMSTER -> SE VILKA DEN HAR BESEGRAT /MATCHWINNERS
 	//STATISTIK -> DE 5 SOM VUNNIT/FÖRLORAT MEST /WINNERS + /LOSERS
 	//HISTORIK: RESULTAT DE SENASTE MATCHERNA, BILD OCH NAMN FÖR VINNARE OCH FÖRLORARE
-
-
+	
 	return (
 		<>
 		<h1> Hamsters </h1>
 		<button onClick={() => setShowAddForm(!showAddForm)}>Add Hamster</button>
+		
 		{ showAddForm ? 
 			<AddForm show={showAddForm} set={setShowAddForm} />
 		: null}
@@ -77,25 +87,8 @@ const Gallery = () => {
 		{ allHamsters? 
 		
 		allHamsters.map(x => (
-				<section key={x.id+x.name}>
-				<article onClick={() => handleShowInfo(x)} className='hamster-card' key={x.id} >
-					<li><img src={`/img/${x.imgName}`} alt={x.name} /></li>
-					<h2>{x.name}</h2>
-					<li><h4>Age: </h4> {x.age} </li>
-					<li><h4>Favorite Food: </h4> {x.favFood} </li>
-					<li><h4>Hobbies: </h4> {x.loves} </li>
-					{ showDisplayHamster && displayHamster && displayHamster.id === x.id ? 
-						<article className="info-overlay">
-						<li><h3>Wins: </h3> {x.wins} </li>
-						<li><h3>Defeats: </h3> {x.defeats} </li>
-						<li><h3>Games: </h3> {x.games} </li>
-						</article>
-						:null	
-					}		
-					
-				</article>
-				<aside key={ x.name} onClick={() => handleDelete(x)} >Remove</aside>
-				</section>
+			<Card key={x.id} hamster={x} deleteItem={handleDelete} showInfo={handleShowInfo} showDisplay={showDisplayHamster} display={displayHamster} />
+				
 			))
 			: 'Loading hamsters...'}
 		
@@ -105,3 +98,4 @@ const Gallery = () => {
 }
 
 export default Gallery
+

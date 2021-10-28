@@ -8,6 +8,7 @@ const db = connect()
 const MATCHES = 'matches'
 const HAMSTERS ='hamsters'
 
+
 //GET /matches -> respons: array med alla matchobject
 router.get('/', async(req, res) => { 
     let array = await getAllMatches()
