@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react"
 import Hamster from '../models/HamsterInterface'
+import Match from "../models/MatchInterface"
 import Matches from '../models/MatchInterface'
 import AddForm from './AddForm'
 import Card from "./Card"
@@ -32,9 +33,10 @@ const Gallery = () => {
 
 
 	const [ allHamsters, setAllHamsters ] = useState<Hamster[] | null>(null)
-	const [ showDisplayHamster, setShowDisplayHamster ] = useState<boolean>(false)
-	const [ displayHamster, setDisplayHamster ] = useState<Hamster | null>(null)
+	/* const [ showDisplayHamster, setShowDisplayHamster ] = useState<boolean>(false) */
+/* 	const [ displayHamster, setDisplayHamster ] = useState<Hamster | null>(null) */
 	const [ showAddForm, setShowAddForm ] = useState<boolean>(false)
+	//const [ matchesWon, setMatchesWon ] = useState<Matches | null>(null)
 	
 	async function sendRequest(saveData:any) {
 		const response = await fetch('/hamsters')
@@ -42,18 +44,28 @@ const Gallery = () => {
 		saveData(data)
 	}
 
-	const getMatchesWon = async(x:Hamster) => {
-		let response = await fetch("/matchWinners/"+x.id, {method: 'get'})
-		let matchesWon = await response.json()
-		console.log('matchesWon:', matchesWon);
-		//setMatches(matchesWon)	
-	}
+/* 	const getMatchesWon = async(x:Hamster) => {
+		try {
+			let response = await fetch("/matchWinners/"+x.id, {method: 'get'})
+			let matchesWon = await response.json()
+			
+			console.log('matchesWon:', matchesWon);
+			matchesWon.map((m:Match) => {
+				console.log(m.loserId);
+				
+			})
+			setMatchesWon(matchesWon)	
+		} catch (error) {
+			console.log('error: ', error);
+			
+		}
+	} */
 
 
 	useEffect(() => {
 			sendRequest(setAllHamsters)
 		}, [])
-
+/* 
 	const handleShowInfo = (x:Hamster) => {
 		fetch("/hamsters/"+x.id, {method: 'get'})
 		getMatchesWon(x)
@@ -69,7 +81,7 @@ const Gallery = () => {
 			setAllHamsters(newHamsterArray)
 			fetch("/hamsters/"+x.id, {method: 'delete'})
 		}
-	}
+	} */
 
 	//VÄLJ HAMSTER -> SE VILKA DEN HAR BESEGRAT /MATCHWINNERS
 	//STATISTIK -> DE 5 SOM VUNNIT/FÖRLORAT MEST /WINNERS + /LOSERS
@@ -87,7 +99,8 @@ const Gallery = () => {
 		{ allHamsters? 
 		
 		allHamsters.map(x => (
-			<Card key={x.id} hamster={x} deleteItem={handleDelete} showInfo={handleShowInfo} showDisplay={showDisplayHamster} display={displayHamster} />
+			<Card key={x.id} hamster={x} /* deleteItem={handleDelete} showInfo={handleShowInfo}  */
+			hamsters={allHamsters} setHamsters={setAllHamsters} /* showDisplay={showDisplayHamster} display={displayHamster} */ />
 				
 			))
 			: 'Loading hamsters...'}

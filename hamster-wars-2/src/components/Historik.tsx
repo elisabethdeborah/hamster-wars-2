@@ -25,27 +25,38 @@ const Historik = () => {
 
 	
 		
-
+let count=0; 
 
 	return (
 		<section className="matches-history">
 		<h2> Historik </h2>
 		{ matches? 
 		matches.map(m => (
-				<article className='match-item' key={m.id} >
+				<section className='match-item' key={m.id} >
+					
+					{console.log('match:',m ,'key:', m.id)
+					}
 					
 					{
 						hamsters?.map(x =>{
+							{console.log(count++);
+							}
 							if (x.id===m.winnerId ){
-								return <><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
-								<li><h3>Winner: </h3> {x.name} </li></>
+								return <article>
+									 <li><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
+								<h3>Winner: </h3> {x.name} </li>
+								</article>
 							} else if (x.id===m.loserId ){
-								return <><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
-								<li><h3>Loser: </h3> {x.name} </li></>
-							} 
+								return <article>
+									<li><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
+								<h3>Loser: </h3> {x.name} </li>
+								</article>
+							} else {
+								return null;
+							}
 						})
 					}
-				</article>
+				</section>
 			))
 			: 'Loading hamsters...'}
 		

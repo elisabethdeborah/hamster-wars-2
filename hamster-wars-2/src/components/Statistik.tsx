@@ -13,6 +13,7 @@ import Hamster from '../models/HamsterInterface'
 
 
 //SORTERA I FALLANDE ORDNING, NU SLUMPMÄSSIGT
+//VARFÖR WINS/DEFEATS/GAMES === 2?????
 
 
 

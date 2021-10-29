@@ -1,8 +1,14 @@
 :root {
 	--background: #323333;
+	--bg-opacity: #323333d3;
 	--text: #c7c6c6;
 	--orange: #c7ca19d0;
 	--shadow: 2px 5px 10px #000;
+}
+
+html {
+	height: 100%;
+	background-color: var(--background);
 }
 
 .App {
@@ -11,8 +17,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--background);
   color: var(--text);
+}
+
+header {
+	width: 100vw;
+	margin: 2em auto;
+}
+
+nav {
+	display: flex;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: var(--bg-opacity);
+	z-index: 2;
+}
+ 
+a {
+	color: var(--text);
+}
+
+nav a {
+	margin: 1em;
 }
 
 img {
@@ -24,11 +53,11 @@ img {
 }
 
 .matches-img {
-	max-height: 4em;
-	max-width: 5em;
+	height: 10em;
 	justify-self: center;
 	align-self: center;
 	margin: 0;
+	border-radius: 5px;
 }
 
 .gallery-container > section {
@@ -36,27 +65,32 @@ img {
 }
 
 .hamster-card {
-
 	width: 15em;
-	padding: 1em;
+	padding: 2em 1em;
 	margin: 1em;
 	border-radius: 5px;
 	position: relative;
 	box-shadow: var(--shadow);
 }
 
+.hamster-card:hover{
+	cursor: pointer;
+}
+
 .hamster-card li {
-	width: 70%;
+	width: 80%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: space-between;
 	text-align: left;
-	margin: 0 auto;
+	margin: .3em auto;
+	font-size: .9em;
 }
 
 
 
-.hamster-card li:first-child {
+.hamster-card .card-img-li {
 	justify-content: center;
 }
 
@@ -65,9 +99,13 @@ img {
 aside {
 	display: inline-block;
 	position: absolute;
-	top: 1em;
-	right: 1em;
+	top: 1.5em;
+	right: 2em;
 	font-weight: 600;
+}
+
+aside:hover {
+	text-decoration: underline;
 }
 
 aside:hover, .game-card:hover {
@@ -87,8 +125,14 @@ aside:hover, .game-card:hover {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 0 3em;
+	align-items: stretch;
+	padding: 0;
 	border-radius: 5px;
+	overflow-y: scroll;
+}
+
+.info-overlay h3 {
+	margin: 0 1em 0 0;
 }
 
 .gallery-container {
@@ -109,10 +153,13 @@ aside:hover, .game-card:hover {
 	height: 500px;
 	justify-content: space-evenly;
 	width: 400px;
-	margin: 6em auto;
+	margin: 5em auto;
 	border-radius: 5px;
 	padding: 2em 0;
-	position: absolute;
+	position: fixed;
+	top: 0;
+	left: 0;
+    right: 0;
     background-color: var(--orange);
 	color: var(--background);
     z-index: 1;
@@ -129,7 +176,7 @@ aside:hover, .game-card:hover {
 	z-index: 1;
 }
 
-.add-form input {
+.add-form input, button {
 	width: 65%;
 	font-size: 1em;
 	padding: .5em 1em;
@@ -142,20 +189,23 @@ aside:hover, .game-card:hover {
 	border: 3px inset rgb(53, 175, 5);
 }
 
-.add-form input:last-child{
+.add-form input:last-child {
 	width: 75%;
 	background-color: var(--background);
 	color: var(--text);
 }
 
-.add-form input:last-child:hover {
+.add-form input:last-child:hover, button:hover {
 	cursor: pointer;
 	filter: brightness(1.4);
 }
-
-button:hover {
-	cursor: pointer;
+button {
+	background-color: var(--orange);
+	width: 160px;
 }
+/* button:hover {
+	cursor: pointer;
+} */
 
 .statistik-container {
 	display: flex;
@@ -170,22 +220,37 @@ button:hover {
 	align-items: center;
 }
 
-.matches-history article {
+.matches-history section {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: space-between;
-	border: 2px solid var(--text);
+	justify-content: space-evenly;
 	border-radius: 5px;
-	margin: 1em;
-	width: 100%;
-	flex:1
+	margin: 3em 0;
+	width: 600px;
+	max-width: 80%;
+	box-shadow: var(--shadow);
 }
 
-.matches-history article li {
+.matches-history section article {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: center;
+	padding: 2em 1em;
+}
+
+.bad-url-container {
+	margin-top: 10em;
+}
+
+.bad-url-container h1 {
+	font-size: 3em;
+}
+.bad-url-container h2 {
+	font-size: 2em;
+}
+.bad-url-container p {
+	font-size: 1.4em;
 }

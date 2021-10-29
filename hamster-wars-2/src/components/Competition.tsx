@@ -23,11 +23,14 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 	async function requestRandom(saveData:any) {
 		const response1 = await fetch('/hamsters/random')
 		const data1 = await response1.json()
-		const response2 = await fetch('/hamsters/random')
-		const data2 = await response2.json()
+		let response2 = await fetch('/hamsters/random')
+		let data2 = await response2.json()
 
 		//WHILE LOOP - WHILE DATA1.ID === DATA2.ID -> FETCH NEW RANDOM
-
+		while (data1.id === data2.id) {
+			response2 = await fetch('/hamsters/random')
+			data2 = await response2.json()
+		}
 		setShowResult(false)
 		saveData([data1, data2])
 	}
@@ -93,8 +96,8 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 		if (contestants){
 			
 			const loser = contestants.filter(contestant => contestant !== x)
-			setLoser(loser[0])
 			setWinner(x)
+			setLoser(loser[0])
 			fetchAllUpdates(x, loser[0])
 		}
 		

@@ -21,22 +21,6 @@ const Cutest = () => {
 	}, [])
 
 
-/////
-
-/////
-
-///////
-
-////////
-
-////////////
-
-// 				DUBBELKOLLA VAD SOM HÄNDER NÄR FLERA ÄR CUTEST, FUNKAR NEDAN?
-
-
-
-
-
 
 
 	if (cutestHamster && cutestHamster?.length > 1) {

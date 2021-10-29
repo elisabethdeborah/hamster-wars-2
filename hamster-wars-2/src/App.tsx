@@ -5,24 +5,43 @@ import Competition from './components/Competition';
 import Start from './components/Start';
 import Statistik from './components/Statistik';
 import Historik from './components/Historik';
+import BadUrl from './components/BadUrl';
+import { Link, Switch, Route, Redirect, BrowserRouter as Router } from 'react-router-dom'
 
 //VYER:
-//STARTSIDA 	COMPONENT 	(X)		ROUTE ( )
-//TÄVLA 		COMPONENT 	(X)		ROUTE ( )
-//GALLERI 		COMPONENT 	(X)		ROUTE ( )
-//STATISTIK 	COMPONENT 	( )		ROUTE ( )
-//HISTORIK 		COMPONENT 	( )		ROUTE ( )
+//STARTSIDA 	COMPONENT 	(X)		ROUTE (X)
+//TÄVLA 		COMPONENT 	(X)		ROUTE (X)
+//GALLERI 		COMPONENT 	(X)		ROUTE (X)
+//STATISTIK 	COMPONENT 	(X)		ROUTE (X)
+//HISTORIK 		COMPONENT 	(X)		ROUTE (X)
 
+//404 PAGE?		COMPONENT 	( )		ROUTE ( )
 
 
 function App() {
   return (
     <div className="App">
-		<Start />
-		<Gallery />
-		<Competition />
-		<Statistik />
-		<Historik />
+		<Router>
+		<header>
+			<nav>
+				<Link to="/">Start</Link>
+				<Link to="/compete">Tävla</Link>
+				<Link to="/gallery">Galleri</Link>
+				<Link to="/statistik">Statistik</Link>
+				<Link to="/historik">Historik</Link>
+			</nav>
+		</header>
+		<main>
+			<Switch>
+				<Route path="/" exact> <Start /> </Route>
+				<Route path="/gallery"> <Gallery /> </Route>
+				<Route path="/compete"> <Competition /> </Route>
+				<Route path="/statistik"> <Statistik /> </Route>
+				<Route path="/historik"> <Historik /> </Route>
+				<Route path="/"> <BadUrl /> </Route>
+			</Switch>
+		</main>
+		</Router>
     </div>
   );
 }
