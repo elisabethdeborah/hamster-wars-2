@@ -17,12 +17,18 @@ const HAMSTERS = 'hamsters'
 router.get('/:id', async(req, res) => { 
     let hasWonMatches = await getWinnersMatches(req.params.id)
 	console.log(hasWonMatches, req.params.id);
-    if (hasWonMatches) {
+	try {
+		res.status(200).send(hasWonMatches) 
+	} catch (error) {
+		console.log("Backend couldn't find ");
+        res.sendStatus(404)
+	}
+  /*   if (hasWonMatches) {
         res.status(200).send(hasWonMatches) 
     } else {
 		console.log("couldn't find ");
         res.sendStatus(404)
-    }
+    } */
 })
 
 

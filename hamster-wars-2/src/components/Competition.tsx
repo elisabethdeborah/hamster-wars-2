@@ -20,6 +20,11 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 	const [ loser, setLoser ] = useState<Hamster|null>(null)
 	const [ doneLoadingUpdate, setDoneLoadingUpdate ] = useState<boolean>(false)
 
+	const [ winnerUpdated, setWinnerUpdated ] = useState<boolean>(false)
+	const [ loserUpdated, setLoserUpdated ] = useState<boolean>(false)
+	const [clicked, setClicked] = useState<boolean>(false)
+	
+
 	async function requestRandom(saveData:any) {
 		const response1 = await fetch('/hamsters/random')
 		const data1 = await response1.json()
@@ -56,27 +61,40 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 
 	}
 
-
-	const requestUpdateResults = async(winner:Hamster, loser:Hamster) => {
-		
+	const updateWinner = async(winner:Hamster) => {
 		//PUT update wins ++, games ++
-		await fetch("/hamsters/"+winner.id, {
-			method: 'put', 
-			body:JSON.stringify({ wins: winner.wins+1, games: winner.games+1}),
-			headers: {
-				"Content-Type": "application/json"
-			}
-		})
+		console.log(winnerUpdated);
+		
+		if (!winnerUpdated) {
+			await fetch("/hamsters/"+winner.id, {
+				method: 'put', 
+				body:JSON.stringify({ wins: winner.wins+1, games: winner.games+1}),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			})
+		}
 
+		setWinnerUpdated(true)
+	}
+
+	const updateLoser = async(loser:Hamster) => {
 		//PUT update defeats ++, games++
-		await fetch("/hamsters/"+loser.id, {
-			method: 'put', 
-			body:JSON.stringify({ defeats: loser.defeats+1, games: loser.games+1}),
-			headers: {
-				"Content-Type": "application/json"
-			}
-		})
+		console.log(loserUpdated);
 
+		if (!loserUpdated) {
+			await fetch("/hamsters/"+loser.id, {
+				method: 'put', 
+				body:JSON.stringify({ defeats: loser.defeats+1, games: loser.games+1}),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			})
+		}
+		setLoserUpdated(true)
+	}
+
+	const updateMatches = async(winner:Hamster, loser:Hamster) => {
 		//POST new match
 		await fetch("/matches/", {
 			method: 'post', 
@@ -85,26 +103,42 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 				"Content-Type": "application/json"
 			}
 		})
+	}
 
 
-		}
 
-
-	const handleVote = (x:Hamster) => {
+/* let count = 0
+	const handleVote = (e:any, x:number) => {
+		console.log('hej', count ++, e.target);
+		count++
+		console.log(count);
 		setShowResult(true)
 		
 		if (contestants){
 			
-			const loser = contestants.filter(contestant => contestant !== x)
-			setWinner(x)
+			const loser = contestants.filter(contestant => contestant !== contestants[x])
+			setWinner(contestants[x])
 			setLoser(loser[0])
-			fetchAllUpdates(x, loser[0])
+			fetchAllUpdates(contestants[x], loser[0])
 		}
 		
 	}
+ */
+	useEffect(() => {
+		if ( contestants && winner === contestants[0] ){
+			updateLoser(contestants[1])
+			setLoser(contestants[1])
+			updateWinner(winner)
+			fetchAllUpdates(winner, contestants[1])
+		} else if (contestants && winner === contestants[1] ) {
+			updateLoser(contestants[0])
+			updateWinner(winner)
+			fetchAllUpdates(winner, contestants[0])
+		}
+	}, [winner])
 
 	const fetchAllUpdates = async(winner:Hamster, loser: Hamster) => {
-		await requestUpdateResults(winner, loser)
+		await updateMatches(winner, loser)
 		await fetchUpdated(winner, loser)
 		setDoneLoadingUpdate(true)
 	}
@@ -132,12 +166,13 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 <>
 				{!doneLoadingUpdate ? 
 				
+				
 				contestants.map(x => (
-					<article onClick={!showResult? () => handleVote(x): undefined} className={showResult?'hamster-card': 'hamster-card game-card'} key={x.id} >
+					<article onClick={!showResult? () => setWinner(x): undefined} className={showResult?'hamster-card': 'hamster-card game-card'} key={x.id} >
 					<li><img src={`/img/${x.imgName}`} alt={x.name} /></li>
 					<h2 className="hamster-name">{x.name}</h2>
 					</article>
-				))
+				)) 
 					: null
 					}
 				
@@ -205,3 +240,15 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 }
 
 export default Competition
+
+
+{/* <>
+				<article onClick={() => setWinner(contestants[0])} className={showResult?'hamster-card': 'hamster-card game-card'} key={contestants[0].id} >
+				<li><img src={`/img/${contestants[0].imgName}`} alt={contestants[0].name} /></li>
+				<h2 className="hamster-name">{contestants[0].name}</h2>
+				</article>
+				<article  onClick={() => setWinner(contestants[1])} className={showResult?'hamster-card': 'hamster-card game-card'} key={contestants[1].id} >
+				<li><img src={`/img/${contestants[1].imgName}`} alt={contestants[1].name} /></li>
+				<h2 className="hamster-name">{contestants[1].name}</h2>
+				</article>
+				</> */}

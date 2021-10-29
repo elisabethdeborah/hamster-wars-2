@@ -25,7 +25,6 @@ app.use(cors())
 
 app.use('/img', express.static(__dirname+'/hamsters')) 
 app.use('/', express.static(__dirname+'/../public')) 
-console.log(__dirname)
 
 //routes / endpoints
 //HAMSTERS
@@ -52,6 +51,12 @@ app.use('/defeated', defeatedRouter)
 
 //SCORES: { challengerWins, defenderWins } 
 app.use('/score', scoreRouter)
+
+//behövs om man använder react router
+app.get('*', (req, res) => {
+	res.sendFile(__dirname + '/build/index.html')
+})
+
 
 //Starta servern
 

@@ -10,8 +10,14 @@ import { Link, Switch, Route, Redirect, BrowserRouter as Router } from 'react-ro
 
 //VYER:
 //STARTSIDA 	COMPONENT 	(X)		ROUTE (X)
+///FIXA OVERLAY ELLER LÄGG TILL INFO + TA BORT HOVER-EFFEKT
+
+
 //TÄVLA 		COMPONENT 	(X)		ROUTE (X)
+
 //GALLERI 		COMPONENT 	(X)		ROUTE (X)
+//FIXA 404 FELMEDDELANDE NÄR INGA VUNNA MATCHER
+
 //STATISTIK 	COMPONENT 	(X)		ROUTE (X)
 //HISTORIK 		COMPONENT 	(X)		ROUTE (X)
 
@@ -38,7 +44,9 @@ function App() {
 				<Route path="/compete"> <Competition /> </Route>
 				<Route path="/statistik"> <Statistik /> </Route>
 				<Route path="/historik"> <Historik /> </Route>
+				<Route path="/hamsters/"> <Redirect to="/" /></Route>
 				<Route path="/"> <BadUrl /> </Route>
+
 			</Switch>
 		</main>
 		</Router>

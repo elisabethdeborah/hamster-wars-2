@@ -3,6 +3,19 @@ import { useState, useEffect } from "react"
 import Hamster from '../models/HamsterInterface'
 
 
+
+
+
+
+
+///FIXA OVERLAY ELLER LÄGG TILL INFO + TA BORT HOVER-EFFEKT
+
+
+
+
+
+
+
 const Cutest = () => {
 
 	const [ cutestHamster, setCutestHamster ] = useState<Hamster[] | null>(null)

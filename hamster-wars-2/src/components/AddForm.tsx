@@ -1,11 +1,18 @@
 
 
-import { FunctionComponent } from "react"
+import { linkSync } from "fs"
+import { FunctionComponent, useState } from "react"
 import AddFormProps from "../models/AddFormProps"
+import {  Redirect } from 'react-router-dom'
 
 
 const AddForm: FunctionComponent<AddFormProps> = ({show, set}) => {
-	
+	const [ submitted, setSubmitted ] = useState<boolean>(false)
+
+/* 	if (submitted) {
+		return <Redirect push to={linkSync.redirectUrl} />
+	} */
+
 	return (
 		<>
 		<section className="form-background-overlay"></section>
@@ -20,7 +27,7 @@ const AddForm: FunctionComponent<AddFormProps> = ({show, set}) => {
 			<input type="hidden" name="wins" value='0' />
 			<input type="hidden" name="defeats" value='0' />
 			<input type="hidden" name="games" value='0' />
-			<input type="submit" value="Add" onSubmit={(e) => e.preventDefault()} />
+			<input type="submit" value="Add" onClick={() => setSubmitted(true)} />
 		</form>
 		</>
 	)

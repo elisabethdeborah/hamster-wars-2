@@ -8,9 +8,14 @@ const Historik = () => {
 	const [ hamsters, setHamsters ] = useState<Hamster[] | null>(null)
 
 	async function sendRequest(setMatches:any) {
-		const response = await fetch('/matches')
-		const data = await response.json()
-		setMatches(data)
+		try {
+			const response = await fetch('/matches')
+			const data = await response.json()
+			setMatches(data)
+		} catch (error) {
+			console.log('error:', error);
+		}
+		
 	}
 	async function sendHamsterRequest(setHamsters:any) {
 		const response = await fetch('/hamsters')
@@ -23,9 +28,6 @@ const Historik = () => {
 			sendHamsterRequest(setHamsters)
 		}, [])
 
-	
-		
-let count=0; 
 
 	return (
 		<section className="matches-history">
@@ -39,15 +41,13 @@ let count=0;
 					
 					{
 						hamsters?.map(x =>{
-							{console.log(count++);
-							}
 							if (x.id===m.winnerId ){
-								return <article>
+								return <article key={x.id+m.winnerId} className='history-card' >
 									 <li><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
 								<h3>Winner: </h3> {x.name} </li>
 								</article>
 							} else if (x.id===m.loserId ){
-								return <article>
+								return <article  key={x.id+m.loserId} className='history-card' >
 									<li><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
 								<h3>Loser: </h3> {x.name} </li>
 								</article>

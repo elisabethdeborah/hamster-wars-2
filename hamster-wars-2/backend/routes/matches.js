@@ -12,6 +12,16 @@ const HAMSTERS ='hamsters'
 //GET /matches -> respons: array med alla matchobject
 router.get('/', async(req, res) => { 
     let array = await getAllMatches()
+	/* try {
+
+		if ( array.length > 0 ) {
+			console.log('number of matches',array.length);
+        res.status(200).send(array)
+    }
+	} catch (error) {
+		console.log("Backend couldn't find any matches");
+        res.sendStatus(404)
+	} */
     if ( array.length > 0 ) {
         res.status(200).send(array)
     } else {

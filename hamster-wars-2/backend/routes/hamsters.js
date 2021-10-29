@@ -201,7 +201,7 @@ const addOne = async( body ) => {
 
 const updateOne = async(id, maybeHamster) => {
 	const docRef = db.collection(HAMSTERS).doc(id)
-    console.log(`Updated hamster with id ${docRef.id}.`);
+    console.log(`Updated hamster named ${maybeHamster.name} with id ${docRef.id}.`);
     const settings = { merge: true }
 	return docRef.set(maybeHamster, settings)
 }
