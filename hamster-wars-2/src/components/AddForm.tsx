@@ -1,13 +1,13 @@
 
 
-import { linkSync } from "fs"
-import { FunctionComponent, useState } from "react"
+import { FunctionComponent } from "react"
 import AddFormProps from "../models/AddFormProps"
-import {  Redirect } from 'react-router-dom'
+//import {  Redirect } from 'react-router-dom'
+//import { linkSync } from "fs"
 
 
 const AddForm: FunctionComponent<AddFormProps> = ({show, set}) => {
-	const [ submitted, setSubmitted ] = useState<boolean>(false)
+	//const [ submitted, setSubmitted ] = useState<boolean>(false)
 
 /* 	if (submitted) {
 		return <Redirect push to={linkSync.redirectUrl} />
@@ -27,7 +27,7 @@ const AddForm: FunctionComponent<AddFormProps> = ({show, set}) => {
 			<input type="hidden" name="wins" value='0' />
 			<input type="hidden" name="defeats" value='0' />
 			<input type="hidden" name="games" value='0' />
-			<input type="submit" value="Add" onClick={() => setSubmitted(true)} />
+			<input type="submit" value="Add" /* onClick={() => setSubmitted(true)} */ />
 		</form>
 		</>
 	)

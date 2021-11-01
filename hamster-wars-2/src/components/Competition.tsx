@@ -4,16 +4,6 @@ import Hamster from '../models/HamsterInterface'
 
 const Competition = () => {
 
-/* 
-
-När battle-vyn visas ska du slumpa två hamstrar, som visas för användaren. Användaren ska klicka för att rösta på den sötaste. Man ska kunna se bild och namn för varje hamster. När man har röstat ska mer information om hamstern visas, bland annat hur många vinster och förluster den har. (Det kan påverka hur man röstar!)
-
-När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1 vinst och förloraren +1 förlust. Nu ska du visa hur många vinster och förluster respektive hamster har. Användaren ska få möjligheten att starta en ny match, med två slumpade hamstrar.
-
-*/
-
-
-
 	const [ contestants, setContestants ] = useState<Hamster[] | null>(null)
 	const [ showResult, setShowResult ] = useState<boolean>(false)
 	const [ winner, setWinner] = useState<Hamster|null>(null)
@@ -22,7 +12,6 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 
 	const [ winnerUpdated, setWinnerUpdated ] = useState<boolean>(false)
 	const [ loserUpdated, setLoserUpdated ] = useState<boolean>(false)
-	const [clicked, setClicked] = useState<boolean>(false)
 	
 
 	async function requestRandom(saveData:any) {
@@ -105,25 +94,6 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 		})
 	}
 
-
-
-/* let count = 0
-	const handleVote = (e:any, x:number) => {
-		console.log('hej', count ++, e.target);
-		count++
-		console.log(count);
-		setShowResult(true)
-		
-		if (contestants){
-			
-			const loser = contestants.filter(contestant => contestant !== contestants[x])
-			setWinner(contestants[x])
-			setLoser(loser[0])
-			fetchAllUpdates(contestants[x], loser[0])
-		}
-		
-	}
- */
 	useEffect(() => {
 		if ( contestants && winner === contestants[0] ){
 			updateLoser(contestants[1])
@@ -240,15 +210,3 @@ När användaren klickar ska båda hamster-objekten uppdateras: vinnaren får +1
 }
 
 export default Competition
-
-
-{/* <>
-				<article onClick={() => setWinner(contestants[0])} className={showResult?'hamster-card': 'hamster-card game-card'} key={contestants[0].id} >
-				<li><img src={`/img/${contestants[0].imgName}`} alt={contestants[0].name} /></li>
-				<h2 className="hamster-name">{contestants[0].name}</h2>
-				</article>
-				<article  onClick={() => setWinner(contestants[1])} className={showResult?'hamster-card': 'hamster-card game-card'} key={contestants[1].id} >
-				<li><img src={`/img/${contestants[1].imgName}`} alt={contestants[1].name} /></li>
-				<h2 className="hamster-name">{contestants[1].name}</h2>
-				</article>
-				</> */}

@@ -1,9 +1,8 @@
 
 
 import { FunctionComponent } from "react"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Hamster from '../models/HamsterInterface'
-import Match from "../models/MatchInterface"
 import Matches from '../models/MatchInterface'
 
 interface CardProps {
@@ -24,6 +23,7 @@ const Card: FunctionComponent<CardProps> = ({hamster,/* , deleteItem, showInfo *
 	const [ matchesWon, setMatchesWon ] = useState<Matches[] | null>(null)
 	const [ showDisplayHamster, setShowDisplayHamster ] = useState<boolean>(false)
 	const [ displayHamster, setDisplayHamster ] = useState<Hamster | null>(null)
+	
 	const getMatchesWon = async(x:Hamster) => {
 		try {
 			let response = await fetch("/matchWinners/"+x.id, {method: 'get'})
@@ -90,17 +90,3 @@ const Card: FunctionComponent<CardProps> = ({hamster,/* , deleteItem, showInfo *
 }
 
 export default Card
-
-
-/* 
-<article className={'hamster-card'} key={loser.id} >
-						<li><img src={`/img/${loser.imgName}`} alt={loser.name} /></li>
-						<h2 className="hamster-name">{loser.name}</h2>
-						<article className="info-overlay">
-							<h2>{ loser.name }</h2>
-							<li><h3>Wins: </h3> { loser.wins } </li>
-							<li><h3>Defeats: </h3> {loser.defeats} </li>
-							<li><h3>Games: </h3> {loser.games} </li>
-						</article>
-					</article>
-*/

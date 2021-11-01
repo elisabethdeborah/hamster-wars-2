@@ -1,8 +1,6 @@
 
 import { useState, useEffect } from "react"
 import Hamster from '../models/HamsterInterface'
-import Match from "../models/MatchInterface"
-import Matches from '../models/MatchInterface'
 import AddForm from './AddForm'
 import Card from "./Card"
 

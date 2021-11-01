@@ -23,6 +23,16 @@ const Historik = () => {
 		setHamsters(data)
 	}
 
+	const handleDelete = (x:Match) => {
+		if (matches){
+			let index:number = matches?.findIndex(i => i.id === x.id)
+			let newMatchArray = [...matches] 
+			newMatchArray.splice(index,1)
+			setMatches(newMatchArray)
+			fetch("/matches/"+x.id, {method: 'delete'})
+		}
+	}
+
 	useEffect(() => {
 			sendRequest(setMatches)
 			sendHamsterRequest(setHamsters)
@@ -35,9 +45,6 @@ const Historik = () => {
 		{ matches? 
 		matches.map(m => (
 				<section className='match-item' key={m.id} >
-					
-					{console.log('match:',m ,'key:', m.id)
-					}
 					
 					{
 						hamsters?.map(x =>{
@@ -56,6 +63,7 @@ const Historik = () => {
 							}
 						})
 					}
+					<aside key={ m.id} onClick={() => handleDelete(m)} >Remove</aside>
 				</section>
 			))
 			: 'Loading hamsters...'}
