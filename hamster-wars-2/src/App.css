@@ -35,6 +35,10 @@ nav {
 	background-color: var(--bg-opacity);
 	z-index: 2;
 }
+
+h1 {
+	font-size: 2em;
+}
  
 a {
 	color: var(--text);
@@ -142,8 +146,16 @@ aside:hover {
 	justify-content: space-between;
 }
 
-.info-overlay h3 {
+.info-overlay  .competition-overlay {
 	margin: 0 1em 0 0;
+}
+
+.info-overlay.rivalry-overlay {
+	justify-content: center;
+}
+
+.info-overlay.rivalry-overlay li {
+	text-align: center;
 }
 
 .gallery-container {
@@ -245,6 +257,7 @@ button {
 	box-shadow: var(--shadow);
     color: var(--background);
     background-color: var(--text);
+	padding: 1em 0;
 }
 
 .history-card {

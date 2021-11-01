@@ -46,8 +46,6 @@ const Competition = () => {
 		})
 		const loserInfo = await responseLoser.json()
 		setLoser(loserInfo)
-		
-
 	}
 
 	const updateWinner = async(winner:Hamster) => {
@@ -124,12 +122,12 @@ const Competition = () => {
 	return (
 		<section className='contest-container'>
 			{ showResult ? <>
-			<h2> And the winner is ...</h2>
+			<h1> And the winner is ...</h1>
 			<h1>{winner?.name}</h1>
 			<button onClick={() => newGame()}>New Game</button> 
 			</>:<>
 			<h1> Who Will Win? </h1>
-			<h3>Which hamster is the cutest? You decide!</h3>
+			<h2>Which hamster is the cutest? You decide!</h2>
 			</> }
 			<section className='contestants'>
 			{contestants ?
@@ -155,7 +153,7 @@ const Competition = () => {
 					<article className={'hamster-card'} key={winner.id} >
 						<li><img src={`/img/${winner.imgName}`} alt={winner.name} /></li>
 						<h2 className="hamster-name">{winner.name}</h2>
-						<article className="info-overlay">
+						<article className="info-overlay competition-overlay">
 							<h2>{ winner.name }</h2>
 							<li><h3>Wins: </h3> { winner.wins } </li>
 							<li><h3>Defeats: </h3> {winner.defeats} </li>
@@ -165,7 +163,7 @@ const Competition = () => {
 					<article className={'hamster-card'} key={loser.id} >
 						<li><img src={`/img/${loser.imgName}`} alt={loser.name} /></li>
 						<h2 className="hamster-name">{loser.name}</h2>
-						<article className="info-overlay">
+						<article className="info-overlay competition-overlay">
 							<h2>{ loser.name }</h2>
 							<li><h3>Wins: </h3> { loser.wins } </li>
 							<li><h3>Defeats: </h3> {loser.defeats} </li>
@@ -178,7 +176,7 @@ const Competition = () => {
 					<article className={'hamster-card'} key={loser.id} >
 						<li><img src={`/img/${loser.imgName}`} alt={loser.name} /></li>
 						<h2 className="hamster-name">{loser.name}</h2>
-						<article className="info-overlay">
+						<article className="info-overlay competition-overlay">
 							<h2>{ loser.name }</h2>
 							<li><h3>Wins: </h3> { loser.wins } </li>
 							<li><h3>Defeats: </h3> {loser.defeats} </li>
@@ -188,7 +186,7 @@ const Competition = () => {
 					<article className={'hamster-card'} key={winner.id} >
 						<li><img src={`/img/${winner.imgName}`} alt={winner.name} /></li>
 						<h2 className="hamster-name">{winner.name}</h2>
-						<article className="info-overlay">
+						<article className="info-overlay competition-overlay">
 							<h2>{ winner.name }</h2>
 							<li><h3>Wins: </h3> { winner.wins } </li>
 							<li><h3>Defeats: </h3> {winner.defeats} </li>

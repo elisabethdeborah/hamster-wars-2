@@ -14,7 +14,7 @@ const Start = () => {
 	
 	return (
 		<>
-		<h1>START</h1>
+		<h1>Start</h1>
     	<Cutest />
 		</>
 	)

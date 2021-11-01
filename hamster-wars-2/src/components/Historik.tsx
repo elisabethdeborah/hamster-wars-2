@@ -41,7 +41,7 @@ const Historik = () => {
 
 	return (
 		<section className="matches-history">
-		<h2> Historik </h2>
+		<h1> Historik </h1>
 		{ matches? 
 		matches.map(m => (
 				<section className='match-item' key={m.id} >

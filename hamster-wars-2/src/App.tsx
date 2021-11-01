@@ -39,7 +39,7 @@ function App() {
 				<Link to="/gallery">Galleri</Link>
 				<Link to="/statistik">Statistik</Link>
 				<Link to="/historik">Historik</Link>
-				<Link to="/rivalry">Jämför</Link>
+				<Link to="/rivalry">Jämför två hamstrar</Link>
 			</nav>
 		</header>
 		<main>
