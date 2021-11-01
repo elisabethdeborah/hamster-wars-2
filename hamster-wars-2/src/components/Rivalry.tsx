@@ -68,7 +68,7 @@ const Rivalry = () => {
 		{ allHamsters? 
 		
 		allHamsters.map(x => (
-			<article onClick={!showResult? () => handleClickHamster(x): undefined} className={showResult?'hamster-card': 'hamster-card gallery-card'} key={x.id} >
+			<article onClick={!showResult? () => handleClickHamster(x): undefined} className={showResult?'hamster-card': rivalOne?.id === x.id? 'hamster-card gallery-card opacity-card': 'hamster-card gallery-card'} key={x.id} >
 				<li key={x.age+'h'+x.defeats} className="card-img-li" ><img className="card-img" src={`/img/${x.imgName}`} alt={x.name} /></li>
 				<h2 key={x.defeats+x.wins+'d'+x.age}>{x.name}</h2>
 				{

@@ -90,6 +90,10 @@ img {
 	box-shadow: 0px 0px 20px var(--orange);
 }
 
+.opacity-card {
+	opacity: .5;
+}
+
 .hamster-card li {
 	width: 80%;
 	display: flex;
