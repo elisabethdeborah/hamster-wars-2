@@ -3,40 +3,40 @@ import { useState, useEffect } from "react"
 import Hamster from '../models/HamsterInterface'
 
 
-const Statistik = () => {
-	const [ winners, setWinners ] = useState<Hamster[] | null>(null)
-	const [ losers, setLosers ] = useState<Hamster[] | null>(null)
+const FightersSlackers = () => {
+	const [ fighters, setFighters ] = useState<Hamster[] | null>(null)
+	const [ slackers, setSlackers ] = useState<Hamster[] | null>(null)
 
-	async function sendRequest(setWinners:any, setLosers:any) {
-		const winnersResponse = await fetch('/winners')
-		const losersResponse = await fetch('/losers')
+	async function sendRequest(setFighters:any, setLosers:any) {
+		const fightersResponse = await fetch('/manyMatches')
+		const slackersResponse = await fetch('/fewMatches')
 		//WINNERS
-		const winnersData = await winnersResponse.json()
-		const losersData = await losersResponse.json()
+		const fightersData = await fightersResponse.json()
+		const slackersData = await slackersResponse.json()
 		
-		setWinners(winnersData)
-		setLosers(losersData)
+		setFighters(fightersData)
+		setLosers(slackersData)
 	}
 
 
 	useEffect(() => {
-		sendRequest(setWinners, setLosers)
+		sendRequest(setFighters, setSlackers)
 		
 	}, [])
 
 
 	return (
 		<>
-		<h1>Statistik</h1>
+		<h1>Fighters and Slackers</h1>
 		<section className="statistik-container">
 		
 
 		<section className="statistik">
-		<h2> Top Five </h2>
+		<h2> Flest matcher </h2>
 		
-		{ winners? 
+		{ fighters? 
 		
-		winners.map(x => (
+		fighters.map(x => (
 				<article className='hamster-card' key={x.id} >
 					<li><img src={`/img/${x.imgName}`} alt={x.name} /></li>
 					<li><h3>Name: </h3> <h3 className="hamster-name">{x.name}</h3></li>
@@ -50,11 +50,11 @@ const Statistik = () => {
 			: 'Loading hamsters...'}
 		</section>
 		<section className="statistik">
-		<h2> Bottom Five </h2>
+		<h2> Minst matcher </h2>
 		
-		{ losers? 
+		{ slackers? 
 		
-		losers.map(x => (
+		slackers.map(x => (
 				<article className='hamster-card' key={x.id} >
 					<li><img src={`/img/${x.imgName}`} alt={x.name} /></li>
 					<li><h3>Name: </h3> <h3 className="hamster-name">{x.name}</h3></li>
@@ -73,4 +73,4 @@ const Statistik = () => {
 	)
 }
 
-export default Statistik
+export default FightersSlackers
