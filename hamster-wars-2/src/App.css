@@ -241,26 +241,38 @@ aside:hover {
 
 .add-form input:focus {
 	outline: none;
+}
+
+.add-form .valid:focus {
+	outline: none;
 	border: 3px inset rgb(53, 175, 5);
 }
 
-.add-form input:last-child {
+.add-form .not-valid:focus {
+	outline: none;
+	border: 3px inset rgb(199, 23, 32);
+}
+
+.add-form button {
 	width: 75%;
 	background-color: var(--background);
 	color: var(--text);
 }
 
-.add-form input:last-child:hover, button:hover {
-	cursor: pointer;
-	filter: brightness(1.4);
-}
 button {
 	background-color: var(--orange);
 	width: 160px;
 }
-/* button:hover {
+
+
+button:hover:not(:disabled) {
 	cursor: pointer;
-} */
+	filter: brightness(1.4);
+}
+
+button:disabled {
+	opacity: .5;
+}
 
 .statistik-container {
 	display: flex;

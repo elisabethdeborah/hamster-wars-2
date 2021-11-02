@@ -31,6 +31,7 @@ const Card: FunctionComponent<CardProps> = ({hamster, hamsters, setHamsters}) =>
 					console.log('same first', x.loserId, matchesWon[index+1].loserId, 'index:', index);
 					matchesWon.splice(index,1)
 				}}
+				return matchesWon
 			})
 			
 

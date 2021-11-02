@@ -91,7 +91,7 @@ const Gallery = () => {
 		<button onClick={() => setShowAddForm(!showAddForm)}>Add Hamster</button>
 		
 		{ showAddForm ? 
-			<AddForm show={showAddForm} set={setShowAddForm} />
+			<AddForm show={showAddForm} set={setShowAddForm} allHamsters={allHamsters} setAllHamsters={setAllHamsters} />
 		: null}
 		<section className="gallery-container">
 		{ allHamsters? 

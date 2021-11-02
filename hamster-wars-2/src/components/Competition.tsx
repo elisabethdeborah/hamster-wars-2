@@ -12,8 +12,8 @@ const Competition = () => {
 	const [ loser, setLoser ] = useState<Hamster|null>(null)
 	const [ doneLoadingUpdate, setDoneLoadingUpdate ] = useState<boolean>(false)
 
-	const [ winnerUpdated, setWinnerUpdated ] = useState<boolean>(false)
-	const [ loserUpdated, setLoserUpdated ] = useState<boolean>(false)
+	//const [ winnerUpdated, setWinnerUpdated ] = useState<boolean>(false)
+	//const [ loserUpdated, setLoserUpdated ] = useState<boolean>(false)
 	
 
 	async function requestRandom(saveData:any) {
@@ -66,7 +66,7 @@ const Competition = () => {
 				"Content-Type": "application/json"
 			}
 			})
-			setLoserUpdated(true)
+			//setLoserUpdated(true)
 		}
 
 	const updateWinner = async(x:Hamster) => {
@@ -80,7 +80,7 @@ const Competition = () => {
 				}
 			})
 			
-			setWinnerUpdated(true)
+			//setWinnerUpdated(true)
 		}
 
 
