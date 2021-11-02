@@ -47,7 +47,7 @@ const Statistik = () => {
 					
 				</article>
 			))
-			: 'Loading hamsters...'}
+			: 'Laddar vinnare...'}
 		</section>
 		<section className="statistik">
 		<h2> Bottom Five </h2>
@@ -65,7 +65,7 @@ const Statistik = () => {
 					
 				</article>
 			))
-			: 'Loading hamsters...'}
+			: 'Laddar förlorare...'}
 		</section>
 		
 		</section>

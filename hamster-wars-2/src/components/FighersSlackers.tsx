@@ -65,7 +65,7 @@ const FightersSlackers = () => {
 					
 				</article>
 			))
-			: 'Loading hamsters...'}
+			: 'Laddar hamstrar...'}
 		</section>
 		
 		</section>

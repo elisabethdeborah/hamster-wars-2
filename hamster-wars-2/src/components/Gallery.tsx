@@ -101,7 +101,7 @@ const Gallery = () => {
 			hamsters={allHamsters} setHamsters={setAllHamsters} /* showDisplay={showDisplayHamster} display={displayHamster} */ />
 				
 			))
-			: 'Loading hamsters...'}
+			: 'Laddar hamstrar...'}
 		
 		</section>
 		</>

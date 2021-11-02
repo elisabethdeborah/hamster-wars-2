@@ -3,10 +3,8 @@ import Hamster from './HamsterInterface'
 
 interface CardProps {
 	hamster:Hamster;
-	/* delete: () => void;
-	showInfo: () => void; */
-	showDisplay: boolean;
-	display: Hamster | null;
+	hamsters: Hamster[];
+	setHamsters: any;
 }
 
 export default CardProps

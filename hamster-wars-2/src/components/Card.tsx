@@ -4,22 +4,12 @@ import { FunctionComponent } from "react"
 import { useState } from "react"
 import Hamster from '../models/HamsterInterface'
 import Matches from '../models/MatchInterface'
-
-interface CardProps {
-	hamster:Hamster;
-	/* deleteItem: any;
-	showInfo: any; */
-	hamsters: Hamster[];
-	/* showDisplay: boolean;
-	display: Hamster | null; */
-	setHamsters: any;
-}
+import CardProps from "../models/CardProps"
 
 
 
 
-
-const Card: FunctionComponent<CardProps> = ({hamster,/* , deleteItem, showInfo */hamsters/* ,showDisplay, display */, setHamsters}) => {
+const Card: FunctionComponent<CardProps> = ({hamster, hamsters, setHamsters}) => {
 	const [ matchesWon, setMatchesWon ] = useState<Matches[] | null>(null)
 	const [ showDisplayHamster, setShowDisplayHamster ] = useState<boolean>(false)
 	const [ displayHamster, setDisplayHamster ] = useState<Hamster | null>(null)
@@ -28,6 +18,22 @@ const Card: FunctionComponent<CardProps> = ({hamster,/* , deleteItem, showInfo *
 		try {
 			let response = await fetch("/matchWinners/"+x.id, {method: 'get'})
 			let matchesWon = await response.json()
+			matchesWon.sort((a:Matches,b:Matches) => (a.loserId[0] > b.loserId[0]) ? 1 : ((b.loserId[0] > a.loserId[0]) ? -1 : 0))
+			
+			matchesWon.map((x:Matches, index:number)=>{
+				if (index>0){
+				if (x.loserId === matchesWon[index-1].loserId) {
+					console.log('same', x.loserId, matchesWon[index-1].loserId, 'index:', index);
+					matchesWon.splice(index,1)
+				}
+				} else if (index===0 && matchesWon.length > 2) {
+					if (x.loserId === matchesWon[index+1].loserId){
+					console.log('same first', x.loserId, matchesWon[index+1].loserId, 'index:', index);
+					matchesWon.splice(index,1)
+				}}
+			})
+			
+
 			setMatchesWon(matchesWon)
 		} catch (error) {
 			setMatchesWon(null)
@@ -68,15 +74,19 @@ const Card: FunctionComponent<CardProps> = ({hamster,/* , deleteItem, showInfo *
 						<li><h3>Defeats: </h3> {hamster.defeats} </li>
 						<li><h3>Games: </h3> {hamster.games} </li>
 						{matchesWon? <h3>Defeated: </h3> :null}
+						{matchesWon ? console.log(matchesWon):null}
 						{matchesWon?
+						
 						matchesWon.map(match => {
 							let defeatedHamster = [hamsters.find(h => h.id === match.loserId)]
-							console.log('found: ', match.loserId)
+							
 							return (
-							<li key={match.id+'k'}>
-								
-								{defeatedHamster?.map(x => <p key={x?.name}>{x?.name}</p>)} 
-							</li>)
+								<li key={hamster.id+Math.floor(Math.random()*99)+hamster.id.split('')[Math.floor(Math.random()*hamster.id.split('').length)]}>
+									
+									{
+									defeatedHamster?.map(x => <p key={hamster.id+Math.floor(Math.random()*99)+hamster.id.split('')[Math.floor(Math.random()*hamster.id.split('').length)]}>{x?.name}</p>)} 
+								</li>
+							)
 						}):null
 						}
 					</article>

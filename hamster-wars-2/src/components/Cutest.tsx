@@ -17,9 +17,7 @@ import Hamster from '../models/HamsterInterface'
 
 
 const Cutest = () => {
-
 	const [ cutestHamster, setCutestHamster ] = useState<Hamster[] | null>(null)
-
 
 	async function sendRequest(saveData:any) {
 		const response = await fetch('/hamsters/cutest')
@@ -27,20 +25,15 @@ const Cutest = () => {
 		saveData(data)
 	}
 
-
 	useEffect(() => {
 		sendRequest(setCutestHamster)
 		
 	}, [])
 
-
-
-
 	if (cutestHamster && cutestHamster?.length > 1) {
 		let getRandomCutie:Hamster = cutestHamster[Math.floor(Math.random()*cutestHamster.length)]
 		setCutestHamster([getRandomCutie])
 	}
-
 
 	return (
 		<div>
@@ -54,12 +47,10 @@ const Cutest = () => {
 					<li><h3>Name: </h3> <h3 className="hamster-name">{x.name}</h3></li>
 					<li><h3>Wins: </h3> {x.wins} </li>
 					<li><h3>Defeats: </h3> {x.defeats} </li>
-					<li><h3>Games: </h3> {x.games} </li>
-					
-					
+					<li><h3>Games: </h3> {x.games} </li>	
 				</article>
 			))
-			: 'Loading hamsters...'}
+			: 'Laddar hamstrar...'}
 		
 		</div>
 	)

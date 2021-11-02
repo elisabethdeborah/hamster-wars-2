@@ -66,7 +66,7 @@ const Historik = () => {
 					<aside key={ m.id} onClick={() => handleDelete(m)} >Remove</aside>
 				</section>
 			))
-			: 'Loading hamsters...'}
+			: 'Laddar matcher...'}
 		
 		</section>
 	)
