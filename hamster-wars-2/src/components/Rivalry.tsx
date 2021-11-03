@@ -68,7 +68,6 @@ const Rivalry = () => {
 		const abortController = new AbortController()
 		const signal = abortController.signal;
 		async function getScores(signal:any) {
-			console.log('getScores');
 			if (rivalOne && rivalTwo) {
 				const response = await fetch(`/score/${rivalOne.id}/${rivalTwo.id}`, {signal: signal})
 				const data = await response.json()
@@ -98,7 +97,10 @@ const Rivalry = () => {
 			 >
 				{rivalOne?.id === x.id? 
 				<aside><FontAwesomeIcon icon={faCheck} /></aside>	:null
-			} 
+				} 
+				{rivalTwo?.id === x.id? 
+				<aside><FontAwesomeIcon icon={faCheck} /></aside>	:null
+				} 
 
 
 				<li key={x.age+'h'+x.defeats} className="card-img-li" ><img className="card-img" src={`/img/${x.imgName}`} alt={x.name} /></li>

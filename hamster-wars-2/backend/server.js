@@ -24,7 +24,7 @@ app.use(cors())
 //serva statiska filer
 
 app.use('/img', express.static(__dirname+'/hamsters')) 
-app.use('/', express.static(__dirname+'/../public')) 
+app.use('/', express.static(__dirname+'/../build')) 
 
 //routes / endpoints
 //HAMSTERS

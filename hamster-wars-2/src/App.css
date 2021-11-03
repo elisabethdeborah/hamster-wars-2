@@ -63,6 +63,33 @@ img {
 	object-position: center;
 }
 
+.start-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.start-page p {
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+
+.start-page a {
+	text-decoration: none;
+}
+
+.start-page img {
+	width: unset;
+}
+
+.start-page-btn-group a, .start-page button a {
+	color: var(--background);
+}
+
+.start-page-btn-group button {
+	margin: 1em;
+}
+
 .matches-img {
 	height: 10em;
 	justify-self: center;
@@ -166,8 +193,19 @@ aside:hover {
 
 aside.remove-gallery-card {
 	position: relative;
-    top: -2.7em;
+    top: -3.7em;
     right: -4em;
+}
+
+.fa-check {
+	color: green;
+	position: relative;
+	background-color: var(--bg-opacity);
+    border-radius: 100%;
+    padding: .5em;
+	font-size: 1.5em;
+	top: -.5em;
+    right: -1em;
 }
 
 

@@ -34,6 +34,7 @@ const Gallery = () => {
 	/* const [ showDisplayHamster, setShowDisplayHamster ] = useState<boolean>(false) */
 /* 	const [ displayHamster, setDisplayHamster ] = useState<Hamster | null>(null) */
 	const [ showAddForm, setShowAddForm ] = useState<boolean>(false)
+
 	//const [ matchesWon, setMatchesWon ] = useState<Matches | null>(null)
 	
 	async function sendRequest(saveData:any) {
@@ -99,7 +100,6 @@ const Gallery = () => {
 		allHamsters.map(x => (
 			<Card key={x.id} hamster={x} /* deleteItem={handleDelete} showInfo={handleShowInfo}  */
 			hamsters={allHamsters} setHamsters={setAllHamsters} /* showDisplay={showDisplayHamster} display={displayHamster} */ />
-				
 			))
 			: 'Laddar hamstrar...'}
 		

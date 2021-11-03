@@ -28,6 +28,7 @@ const AddForm = ({show, set, allHamsters, setAllHamsters}:AddFormProps) => {
 		return favFood.length >= 2
 	}
 	function validateImg(input:string):boolean {
+		//VALIDERA SÅ ATT INTE BLIR 404 OM TEX 'ÖDLSFJÖSJFLÖ'
 		return imgName.length >= 2
 	}
 	

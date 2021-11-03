@@ -2,32 +2,27 @@
 import { useState, useEffect } from "react"
 import Hamster from '../models/HamsterInterface'
 
-
-
-
-
-
-
-///FIXA OVERLAY ELLER LÄGG TILL INFO + TA BORT HOVER-EFFEKT
-
-
-
-
-
-
-
 const Cutest = () => {
 	const [ cutestHamster, setCutestHamster ] = useState<Hamster[] | null>(null)
-
+	const [ errorExists, setError ] = useState<boolean>(false)
+	
 	async function sendRequest(saveData:any) {
-		const response = await fetch('/hamsters/cutest')
-		const data = await response.json()
-		saveData(data)
+		try {
+			const response = await fetch('/hamsters/cutest')
+			if (!response.ok) {
+				throw new Error(response.statusText);
+			} else {
+				const data = await response.json()
+				saveData(data)
+			}
+		} catch (error) {
+			console.log(error);
+			setError(true)
+		}
 	}
-
+	
 	useEffect(() => {
 		sendRequest(setCutestHamster)
-		
 	}, [])
 
 	if (cutestHamster && cutestHamster?.length > 1) {
@@ -35,7 +30,9 @@ const Cutest = () => {
 		setCutestHamster([getRandomCutie])
 	}
 
+	
 	return (
+		!errorExists ? 
 		<div>
 		<h2> Defending Champion </h2>
 		
@@ -52,6 +49,9 @@ const Cutest = () => {
 			))
 			: 'Laddar hamstrar...'}
 		
+		</div>
+		:<div>
+			<h2>Nånting klickar inte... Kom tillbaka om en stund om du vill se vilken hamster som leder!</h2>
 		</div>
 	)
 }
