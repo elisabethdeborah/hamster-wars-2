@@ -53,11 +53,14 @@ main {
 }
 
 img {
-	margin-top: 1.5em;
-	max-height: 10em;
-	max-width: 15em;
+	width: 17em;
 	justify-self: center;
 	align-self: center;
+	overflow: hidden;
+	max-height: 15em;
+    overflow: hidden;
+	object-fit: cover;
+	object-position: center;
 }
 
 .matches-img {
@@ -70,20 +73,40 @@ img {
 
 .gallery-container > section {
 	position: relative;
+/* 	height: 10em;
+	border: 2px solid red; */
+	/* border-radius: 5px;
+    color: var(--background);
+    position: relative;
+    box-shadow: var(--shadow);
+    background-color: var(--text);
+	position: relative; */
 }
 
 .hamster-card {
-	width: 15em;
+	/* width: 15em;
     padding: 2em 1em;
-    margin: 1em;
-    border-radius: 5px;
+    margin: 1em; */
+    /* border-radius: 5px;
+    color: var(--background);
+    position: relative;
+    box-shadow: var(--shadow);
+    background-color: var(--text);
+	position: relative; */
+	position: relative;
+	border-radius: 5px;
     color: var(--background);
     position: relative;
     box-shadow: var(--shadow);
     background-color: var(--text);
 	position: relative;
+	overflow: hidden;
+	margin: 1em;
 }
 
+.game-card {
+	margin: 1em;
+}
 
 .hamster-card.gallery-card:hover, .game-card:hover {
 	cursor: pointer;
@@ -109,13 +132,13 @@ img {
 }
 
 .hamster-card li {
-	width: 80%;
+	/* width: 80%; */
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	text-align: left;
-	margin: .3em auto;
+	/* margin: .3em auto; */
 	font-size: .9em;
 }
 
@@ -141,6 +164,11 @@ aside:hover {
 	cursor: pointer;
 }
 
+aside.remove-gallery-card {
+	position: relative;
+    top: -2.7em;
+    right: -4em;
+}
 
 
 
@@ -155,7 +183,7 @@ aside:hover {
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	padding: 2em 0;
+	padding: 2em 1em;
 	border-radius: 5px;
 	overflow-y: scroll;
 }
@@ -166,7 +194,7 @@ aside:hover {
 
 .info-overlay.competition-overlay {
 	margin: 0;
-	padding: 1em 0 0 0;
+	padding: 1em 1em 0 1em;
 }
 
 .competition-overlay h1 {
@@ -190,7 +218,7 @@ aside:hover {
 .gallery-container {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	row-gap: 3em;
+	gap: 3em;
 	margin: 5em auto;
 }
 
@@ -308,7 +336,7 @@ button:disabled {
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	padding: 2em 1em;
+	padding: 2em 1.5em;
 }
 
 .match-item {

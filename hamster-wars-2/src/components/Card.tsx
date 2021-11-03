@@ -5,6 +5,8 @@ import { useState } from "react"
 import Hamster from '../models/HamsterInterface'
 import Matches from '../models/MatchInterface'
 import CardProps from "../models/CardProps"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons"
 
 
 
@@ -94,7 +96,7 @@ const Card: FunctionComponent<CardProps> = ({hamster, hamsters, setHamsters}) =>
 					:null	
 				}			
 			</article>
-			<aside key={ hamster.name} onClick={() => handleDelete(hamster)} >Remove</aside>
+			<aside className={'remove-gallery-card'} key={ hamster.name} onClick={() => handleDelete(hamster)} ><FontAwesomeIcon icon={faMinusCircle} /></aside>
 		</section>
  
 	)

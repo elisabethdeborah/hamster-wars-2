@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from "react"
 import Hamster from "../models/HamsterInterface"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from "@fortawesome/free-solid-svg-icons"
 
 interface RivalData {
 	rivalOneWon: number,
@@ -91,10 +93,14 @@ const Rivalry = () => {
 		
 		allHamsters.map(x => (
 			<article onClick={ () => !showResult? handleClickHamster(x): resetClickHamster()} 
-			className={
-				showResult?
-				'hamster-card':
-				 rivalOne?.id === x.id? 'hamster-card gallery-card opacity-card': 'hamster-card gallery-card'} key={x.id} >
+				className={ showResult? 'hamster-card': rivalOne?.id === x.id? 'hamster-card gallery-card opacity-card' : 'hamster-card gallery-card' } 
+				 key={x.id}
+			 >
+				{rivalOne?.id === x.id? 
+				<aside><FontAwesomeIcon icon={faCheck} /></aside>	:null
+			} 
+
+
 				<li key={x.age+'h'+x.defeats} className="card-img-li" ><img className="card-img" src={`/img/${x.imgName}`} alt={x.name} /></li>
 				<h2 key={x.defeats+x.wins+'d'+x.age}>{x.name}</h2>
 				{
