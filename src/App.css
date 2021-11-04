@@ -137,7 +137,7 @@ img {
 
 .hamster-card.gallery-card:hover, .game-card:hover {
 	cursor: pointer;
-	filter: brightness(1.1);
+	/* filter: brightness(1.1); */
 	box-shadow: 0px 0px 20px var(--orange);
 }
 
@@ -208,6 +208,12 @@ aside.remove-gallery-card {
     right: -1em;
 }
 
+.fa-circle-minus:hover {
+	transform: scale(1.1);
+	border-radius: 100%;
+	box-shadow: 0 0 10px var(--bg-opacity);
+}
+
 
 
 .info-overlay {
@@ -216,7 +222,7 @@ aside.remove-gallery-card {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #c7c6c6d6;
+    background-color: #c7c6c6dc;
     color: #323333;
 	display: flex;
 	flex-direction: column;
@@ -224,6 +230,7 @@ aside.remove-gallery-card {
 	padding: 2em 1em;
 	border-radius: 5px;
 	overflow-y: scroll;
+	z-index: 1;
 }
 
 .info-overlay li {
@@ -272,7 +279,7 @@ aside.remove-gallery-card {
 	flex-direction: column;
 	align-items: center;
 	height: 500px;
-	justify-content: space-evenly;
+	justify-content: flex-start;
 	width: 400px;
 	margin: 5em auto;
 	border-radius: 5px;
@@ -283,7 +290,7 @@ aside.remove-gallery-card {
     right: 0;
     background-color: var(--orange);
 	color: var(--background);
-    z-index: 1;
+    z-index: 2;
 	box-shadow: var(--shadow);
 }
 
@@ -302,6 +309,8 @@ aside.remove-gallery-card {
 	font-size: 1em;
 	padding: .5em 1em;
 	border-radius: 100px;
+	border: 2px solid var(--bg-opacity);
+	margin: .5em auto;
 	background-color: #ffffffaf;
 }
 
@@ -311,12 +320,36 @@ aside.remove-gallery-card {
 
 .add-form .valid:focus {
 	outline: none;
-	border: 3px inset rgb(53, 175, 5);
+	border: 2px inset rgb(53, 175, 5);
 }
 
 .add-form .not-valid:focus {
 	outline: none;
-	border: 3px inset rgb(199, 23, 32);
+	border: 2px inset rgb(199, 23, 32);
+}
+
+.img-name-section {
+	width: 65%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	margin-left: -2em;
+}
+
+.img-name-section input {
+	width: 100%;
+}
+
+
+
+.img-name-section span {
+	font-size: .7em;
+	text-align: left;
+	margin: 1em;
+	height: 4em;
+	display: flex;
+	align-items: center;
 }
 
 .add-form button {

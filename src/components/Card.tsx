@@ -15,11 +15,14 @@ const Card: FunctionComponent<CardProps> = ({hamster, hamsters, setHamsters}) =>
 	const [ matchesWon, setMatchesWon ] = useState<Matches[] | null>(null)
 	const [ showDisplayHamster, setShowDisplayHamster ] = useState<boolean>(false)
 	const [ displayHamster, setDisplayHamster ] = useState<Hamster | null>(null)
+	const [ src, setSrc] = useState<string>(hamster.imgName.includes('http') ? hamster.imgName:`/img/${hamster.imgName}`)
 	
 	const getMatchesWon = async(x:Hamster) => {
 		try {
 			let response = await fetch("/matchWinners/"+x.id, {method: 'get'})
 			let matchesWon = await response.json()
+
+			//sorterar alla vunna matcher så att de som är samma förlorare hamnar efter varandra i listan, tar sedan bort dublett
 			if (matchesWon.length > 1 ){
 			matchesWon.sort((a:Matches,b:Matches) => (a.loserId[0] > b.loserId[0]) ? 1 : ((b.loserId[0] > a.loserId[0]) ? -1 : 0))
 			}
@@ -65,7 +68,9 @@ const Card: FunctionComponent<CardProps> = ({hamster, hamsters, setHamsters}) =>
 	return (
 		<section key={hamster.id+hamster.name} >
 			<article onClick={() => handleShowInfo(hamster)} className='hamster-card gallery-card' key={hamster.id} >
-				<li key={hamster.age+'h'+hamster.defeats} className="card-img-li" ><img className="card-img" src={`/img/${hamster.imgName}`} alt={hamster.name} /></li>
+				<li key={hamster.age+'h'+hamster.defeats} className="card-img-li" >
+					<img className="card-img" src={src} onError={() => setSrc(`/img/hamster-${Math.ceil(Math.random()*40)}.jpg`)} alt={hamster.name} />
+				</li>
 				<h2 key={hamster.defeats+hamster.wins+'d'+hamster.age}>{hamster.name}</h2>
 				
 				{ showDisplayHamster && displayHamster && displayHamster.id === hamster.id ? 
