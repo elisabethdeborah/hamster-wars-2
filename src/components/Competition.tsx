@@ -2,9 +2,10 @@
 //import { abort } from "process"
 import { useState, useEffect } from "react"
 import Hamster from '../models/HamsterInterface'
+import HeaderProps from "../models/HeaderProps"
 import ResultsInfoOverlay from "./ResultsInfoOverlay"
 
-const Competition = () => {
+const Competition = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 
 	const [ contestants, setContestants ] = useState<Hamster[] | null>(null)
 	const [ showResult, setShowResult ] = useState<boolean>(false)
@@ -33,8 +34,10 @@ const Competition = () => {
 
 
 	useEffect(() => {
+		setHeader1('Who Will Win?')
+		setHeader2('Vilken hamster är sötast? You decide!')
 		requestRandom(setContestants)
-	}, [])
+	}, [setHeader2, setHeader1])
 
 
 	const updateMatches = async(winner:Hamster, loser:Hamster) => {
@@ -94,17 +97,16 @@ const Competition = () => {
 		setDoneLoadingUpdate(true)
 	}
 
-
+	
 	return (
 		<section className='contest-container'>
 			{ winner ? 
 				<>
-				<h1> And the winner is ...</h1>
-				<h1>{winner?.name}</h1>
+				<h2>And the winner is ...</h2>
+				<h2 className="winner-is-header">{winner?.name}</h2>
 				<button onClick={() => newGame()}>New Game</button> 
 				</>:<>
-				<h1> Who Will Win? </h1>
-				<h2>Which hamster is the cutest? You decide!</h2>
+				<h2> Click on a card </h2>
 				</> 
 			}
 			<section className='contestants'>

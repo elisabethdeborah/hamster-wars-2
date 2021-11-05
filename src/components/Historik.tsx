@@ -1,9 +1,10 @@
 
 import { useState, useEffect } from "react"
 import Hamster from "../models/HamsterInterface"
+import HeaderProps from "../models/HeaderProps"
 import Match from '../models/MatchInterface'
 
-const Historik = () => {
+const Historik = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 	const [ matches, setMatches ] = useState<Match[] | null>(null)
 	const [ hamsters, setHamsters ] = useState<Hamster[] | null>(null)
 
@@ -34,18 +35,19 @@ const Historik = () => {
 	}
 
 	useEffect(() => {
-			sendRequest(setMatches)
-			sendHamsterRequest(setHamsters)
-		}, [])
+		setHeader1('Historik')
+		setHeader2('Alla matcher som spelats')
+		sendRequest(setMatches)
+		sendHamsterRequest(setHamsters)
+	}, [setHeader2, setHeader1])
 
-
+	
 	return (
 		<section className="matches-history">
-		<h1> Historik </h1>
+		<h2>{matches?.length} {matches && (matches.length > 1 || matches.length === 0) ?'matcher':'match'}</h2>
 		{ matches? 
 		matches.map(m => (
 				<section className='match-item' key={m.id} >
-					
 					{
 						hamsters?.map(x =>{
 							if (x.id===m.winnerId ){
@@ -66,6 +68,7 @@ const Historik = () => {
 					<aside key={ m.id} onClick={() => handleDelete(m)} >Remove</aside>
 				</section>
 			))
+			
 			: 'Laddar matcher...'}
 		
 		</section>

@@ -33,18 +33,17 @@ const Cutest = () => {
 	
 	return (
 		!errorExists ? 
-		<div>
-		<h2> Defending Champion </h2>
+		<div className="cutest-div">
 		
 		{ cutestHamster? 
 		
 		cutestHamster.map(x => (
-				<article className='hamster-card' key={x.id} >
-					<li><img src={`/img/${x.imgName}`} alt={x.name} /></li>
-					<li><h3>Name: </h3> <h3 className="hamster-name">{x.name}</h3></li>
-					<li><h3>Wins: </h3> {x.wins} </li>
-					<li><h3>Defeats: </h3> {x.defeats} </li>
-					<li><h3>Games: </h3> {x.games} </li>	
+				<article className='hamster-card cutest-hamster' key={x.id} >
+					<img src={`/img/${x.imgName}`} alt={x.name} />
+					<h2> Defending Champion </h2>
+					<h3>Det här är {x.name}</h3>
+					<p>{x.name} har spelat {x.games} matcher och vunnit hela {x.wins}! </p> 
+					<h4>Stort grattis {x.name}!</h4>
 				</article>
 			))
 			: 'Laddar hamstrar...'}

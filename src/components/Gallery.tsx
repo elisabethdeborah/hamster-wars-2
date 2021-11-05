@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react"
 import Hamster from '../models/HamsterInterface'
+import HeaderProps from "../models/HeaderProps"
 import AddForm from './AddForm'
 import Card from "./Card"
 
@@ -25,7 +26,7 @@ Visa resultatet från de senaste matcherna: bild och namn för både vinnare och
 
 
 
-const Gallery = () => {
+const Gallery = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 
 	//const [ matches, setMatches ] = useState<Match[] | null>(null)
 
@@ -62,8 +63,10 @@ const Gallery = () => {
 
 
 	useEffect(() => {
-			sendRequest(setAllHamsters)
-		}, [])
+		setHeader1('Hamsters')
+		setHeader2('Kolla in alla hamstrar')
+		sendRequest(setAllHamsters)
+	}, [setHeader1, setHeader2])
 /* 
 	const handleShowInfo = (x:Hamster) => {
 		fetch("/hamsters/"+x.id, {method: 'get'})
@@ -88,7 +91,6 @@ const Gallery = () => {
 	
 	return (
 		<>
-		<h1> Hamsters </h1>
 		<button onClick={() => setShowAddForm(!showAddForm)}>Add Hamster</button>
 		
 		{ showAddForm ? 

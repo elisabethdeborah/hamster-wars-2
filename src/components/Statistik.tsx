@@ -1,9 +1,10 @@
 
 import { useState, useEffect } from "react"
 import Hamster from '../models/HamsterInterface'
+import HeaderProps from "../models/HeaderProps"
 
 
-const Statistik = () => {
+const Statistik = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 	const [ winners, setWinners ] = useState<Hamster[] | null>(null)
 	const [ losers, setLosers ] = useState<Hamster[] | null>(null)
 
@@ -20,14 +21,16 @@ const Statistik = () => {
 
 
 	useEffect(() => {
+		setHeader1('Statistik')
+		setHeader2('5 bästa och 5 sämsta')
 		sendRequest(setWinners, setLosers)
 		
-	}, [])
+	}, [setHeader1, setHeader2])
+
 
 
 	return (
 		<>
-		<h1>Statistik</h1>
 		<section className="statistik-container">
 		
 

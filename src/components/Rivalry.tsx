@@ -3,13 +3,14 @@ import { useState, useEffect } from "react"
 import Hamster from "../models/HamsterInterface"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from "@fortawesome/free-solid-svg-icons"
+import HeaderProps from "../models/HeaderProps"
 
 interface RivalData {
 	rivalOneWon: number,
 	rivalTwoWon: number
 }
 
-const Rivalry = () => {
+const Rivalry = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 	const [ rivalOne, setRivalOne ] = useState<Hamster | null>(null)
 	const [ rivalTwo, setRivalTwo ] = useState<Hamster | null>(null)
 	const [ rivalData, setRivalData ] = useState<RivalData | null>(null)
@@ -61,8 +62,10 @@ const Rivalry = () => {
 	}
 
 	useEffect(() => {
-			sendRequest(setAllHamsters)
-		}, [])
+		setHeader1('Rivalitet')
+		setHeader2('Jämför poängställningen mellan två hamstrar')
+		sendRequest(setAllHamsters)
+		}, [setHeader2, setHeader1])
 
 	useEffect(() => {
 		const abortController = new AbortController()
@@ -86,7 +89,6 @@ const Rivalry = () => {
 
 	return (
 		<>
-		<h1> Rivalitet </h1>
 		<section className="gallery-container"onChange={() => console.log('hej')}>
 		{ allHamsters? 
 		
