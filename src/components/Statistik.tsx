@@ -4,7 +4,7 @@ import Hamster from '../models/HamsterInterface'
 import HeaderProps from "../models/HeaderProps"
 
 
-const Statistik = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
+const Statistik = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	const [ winners, setWinners ] = useState<Hamster[] | null>(null)
 	const [ losers, setLosers ] = useState<Hamster[] | null>(null)
 
@@ -24,10 +24,8 @@ const Statistik = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 		setHeader1('Statistik')
 		setHeader2('5 bästa och 5 sämsta')
 		sendRequest(setWinners, setLosers)
-		
-	}, [setHeader1, setHeader2])
-
-
+		setMobileNav(false)
+	}, [setHeader1, setHeader2, setMobileNav])
 
 	return (
 		<>
@@ -46,8 +44,6 @@ const Statistik = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 					<li><h3>Wins: </h3> {x.wins} </li>
 					<li><h3>Defeats: </h3> {x.defeats} </li>
 					<li><h3>Games: </h3> {x.games} </li>
-					
-					
 				</article>
 			))
 			: 'Laddar vinnare...'}
@@ -64,8 +60,6 @@ const Statistik = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 					<li><h3>Wins: </h3> {x.wins} </li>
 					<li><h3>Defeats: </h3> {x.defeats} </li>
 					<li><h3>Games: </h3> {x.games} </li>
-					
-					
 				</article>
 			))
 			: 'Laddar förlorare...'}

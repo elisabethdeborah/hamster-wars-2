@@ -4,7 +4,7 @@ interface AddFormProps {
 	show: boolean;
 	set: any;
 	allHamsters: Hamster[] | null;
-	setAllHamsters: any
+	setAllHamsters: any;
 }
 
 export default AddFormProps

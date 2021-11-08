@@ -3,8 +3,10 @@ import { useState, useEffect } from "react"
 import Hamster from "../models/HamsterInterface"
 import HeaderProps from "../models/HeaderProps"
 import Match from '../models/MatchInterface'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons"
 
-const Historik = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
+const Historik = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	const [ matches, setMatches ] = useState<Match[] | null>(null)
 	const [ hamsters, setHamsters ] = useState<Hamster[] | null>(null)
 
@@ -39,7 +41,8 @@ const Historik = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 		setHeader2('Alla matcher som spelats')
 		sendRequest(setMatches)
 		sendHamsterRequest(setHamsters)
-	}, [setHeader2, setHeader1])
+		setMobileNav(false)
+	}, [setHeader2, setHeader1, setMobileNav])
 
 	
 	return (
@@ -53,19 +56,19 @@ const Historik = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 							if (x.id===m.winnerId ){
 								return <article key={x.id+m.winnerId} className='history-card' >
 									 <li><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
-								<h3>Winner: </h3> {x.name} </li>
+								<h3>Vinnare: </h3> {x.name} </li>
 								</article>
 							} else if (x.id===m.loserId ){
 								return <article  key={x.id+m.loserId} className='history-card' >
 									<li><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
-								<h3>Loser: </h3> {x.name} </li>
+								<h3>Förlorare: </h3> {x.name} </li>
 								</article>
 							} else {
 								return null;
 							}
 						})
 					}
-					<aside key={ m.id} onClick={() => handleDelete(m)} >Remove</aside>
+					<aside key={ m.id} onClick={() => handleDelete(m)} ><FontAwesomeIcon icon={faMinusCircle} /></aside>
 				</section>
 			))
 			

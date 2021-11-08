@@ -10,36 +10,20 @@ import FightersSlackers from './components/FighersSlackers';
 import BadUrl from './components/BadUrl';
 import { Link, Switch, Route, Redirect, BrowserRouter as Router } from 'react-router-dom'
 import Rivalry from './components/Rivalry';
-
-
-//VYER:
-//STARTSIDA 	COMPONENT 	(X)		ROUTE (X)
-
-
-//TÄVLA 		COMPONENT 	(X)		ROUTE (X)
-//fixa ordningen på korten när resultatet visas
-
-//GALLERI 		COMPONENT 	(X)		ROUTE (X)
-//FIXA 404 FELMEDDELANDE NÄR INGA VUNNA MATCHER
-
-//STATISTIK 	COMPONENT 	(X)		ROUTE (X)
-//FIXA 404 FELMEDDELANDE NÄR INGA MATCHER 
-
-//HISTORIK 		COMPONENT 	(X)		ROUTE (X)
-//FIXA 404 FELMEDDELANDE NÄR INGA MATCHER
-
-//404 PAGE?		COMPONENT 	( )		ROUTE ( )
+import Logo from './components/Logo';
+import HamsterHamburger from './components/HamsterHamburger';
 
 
 function App() {
 	const [ header1, setHeader1 ] = useState<string >('')
 	const [ header2, setHeader2 ] = useState<string >('')
+	const [ mobileNav, setMobilNav ] = useState<boolean>(false)
 
   return (
     <div className="App">
 		<Router>
 		<header>
-			<nav>
+			<nav className={mobileNav ? 'nav open-nav':'nav'}>
 				<Link to="/">Start</Link>
 				<Link to="/compete">Tävla</Link>
 				<Link to="/gallery">Galleri</Link>
@@ -48,20 +32,21 @@ function App() {
 				<Link to="/rivalry">Jämför två hamstrar</Link>
 				<Link to="/fightersslackers">Fighters and Slackers</Link>
 			</nav>
-			<h1>{header1}</h1>
+			<h1>{header1} <Logo /></h1>
 			<h2>{header2}</h2>
+			<HamsterHamburger mobileNav={mobileNav} setMobileNav={setMobilNav} />
 		</header>
 		<main>
 			<Switch>
-				<Route path="/" exact> <Start header1={header1} setHeader1={setHeader1} header2={header2} setHeader2={setHeader2} /> </Route>
-				<Route path="/gallery"> <Gallery header1={header1} setHeader1={setHeader1} header2={header2} setHeader2={setHeader2} /> </Route>
-				<Route path="/compete"> <Competition header1={header1} setHeader1={setHeader1} header2={header2} setHeader2={setHeader2} /> </Route>
-				<Route path="/statistik"> <Statistik header1={header1} setHeader1={setHeader1} header2={header2} setHeader2={setHeader2} /> </Route>
-				<Route path="/historik"> <Historik header1={header1} setHeader1={setHeader1} header2={header2} setHeader2={setHeader2} /> </Route>
+				<Route path="/" exact> <Start setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/gallery"> <Gallery setMobileNav={setMobilNav}  setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/compete"> <Competition setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/statistik"> <Statistik setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/historik"> <Historik setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
 				<Route path="/hamsters/"> <Redirect to="/gallery" /></Route>
-				<Route path="/rivalry"> <Rivalry header1={header1} setHeader1={setHeader1} header2={header2} setHeader2={setHeader2} /> </Route>
-				<Route path="/fightersslackers"> <FightersSlackers header1={header1} setHeader1={setHeader1} header2={header2} setHeader2={setHeader2} /></Route>
-				<Route path="/"> <BadUrl /> </Route>
+				<Route path="/rivalry"> <Rivalry setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/fightersslackers"> <FightersSlackers setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /></Route>
+				<Route path="/"> <BadUrl setHeader1={setHeader1} setHeader2={setHeader2} setMobileNav={setMobilNav} /> </Route>
 
 			</Switch>
 		</main>

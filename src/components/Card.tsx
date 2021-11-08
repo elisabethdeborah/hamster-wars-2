@@ -1,6 +1,4 @@
 
-
-import { FunctionComponent } from "react"
 import { useState } from "react"
 import Hamster from '../models/HamsterInterface'
 import Matches from '../models/MatchInterface'
@@ -8,10 +6,7 @@ import CardProps from "../models/CardProps"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons"
 
-
-
-
-const Card: FunctionComponent<CardProps> = ({hamster, hamsters, setHamsters}) => {
+const Card= ({hamster, hamsters, setHamsters}:CardProps) => {
 	const [ matchesWon, setMatchesWon ] = useState<Matches[] | null>(null)
 	const [ showDisplayHamster, setShowDisplayHamster ] = useState<boolean>(false)
 	const [ displayHamster, setDisplayHamster ] = useState<Hamster | null>(null)
@@ -39,8 +34,6 @@ const Card: FunctionComponent<CardProps> = ({hamster, hamsters, setHamsters}) =>
 				}}
 				return matchesWon
 			})
-			
-
 			setMatchesWon(matchesWon)
 		} catch (error) {
 			setMatchesWon(null)
@@ -66,6 +59,7 @@ const Card: FunctionComponent<CardProps> = ({hamster, hamsters, setHamsters}) =>
 	}
 	
 	return (
+		<>
 		<section key={hamster.id+hamster.name} >
 			<article onClick={() => handleShowInfo(hamster)} className='hamster-card gallery-card' key={hamster.id} >
 				<li key={hamster.age+'h'+hamster.defeats} className="card-img-li" >
@@ -84,26 +78,29 @@ const Card: FunctionComponent<CardProps> = ({hamster, hamsters, setHamsters}) =>
 						<li><h3>Games: </h3> {hamster.games} </li>
 						{matchesWon? <h3>Defeated: </h3> :null}
 						{matchesWon ? console.log(matchesWon):null}
-						{matchesWon?
-						
-						matchesWon.map(match => {
-							let defeatedHamster = [hamsters.find(h => h.id === match.loserId)]
-							
-							return (
-								<li key={hamster.id+Math.floor(Math.random()*99)+hamster.id.split('')[Math.floor(Math.random()*hamster.id.split('').length)]}>
-									
+						{
+						matchesWon?
+							matchesWon.map(match => {
+								let defeatedHamster = [hamsters.find(h => h.id === match.loserId)]
+								return (
+									<li key={hamster.id+Math.floor(Math.random()*99)+hamster.id.split('')[Math.floor(Math.random()*hamster.id.split('').length)]}>
 									{
-									defeatedHamster?.map(x => <p key={hamster.id+Math.floor(Math.random()*99)+hamster.id.split('')[Math.floor(Math.random()*hamster.id.split('').length)]}>{x?.name}</p>)} 
-								</li>
-							)
-						}):null
+										defeatedHamster?.map(x => <p key={hamster.id+Math.floor(Math.random()*99)+hamster.id.split('')[Math.floor(Math.random()*hamster.id.split('').length)]}>{x?.name}</p>)
+									} 
+									</li>
+								)
+							})
+							:null
 						}
 					</article>
 					:null	
 				}			
 			</article>
-			<aside className={'remove-gallery-card'} key={ hamster.name} onClick={() => handleDelete(hamster)} ><FontAwesomeIcon icon={faMinusCircle} /></aside>
+			<aside className={'remove-gallery-card'} key={ hamster.name} onClick={() => handleDelete(hamster)} >
+				<FontAwesomeIcon icon={faMinusCircle} />
+			</aside>
 		</section>
+		</>
 	)
 }
 

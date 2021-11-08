@@ -10,7 +10,7 @@ interface RivalData {
 	rivalTwoWon: number
 }
 
-const Rivalry = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
+const Rivalry = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	const [ rivalOne, setRivalOne ] = useState<Hamster | null>(null)
 	const [ rivalTwo, setRivalTwo ] = useState<Hamster | null>(null)
 	const [ rivalData, setRivalData ] = useState<RivalData | null>(null)
@@ -29,20 +29,6 @@ const Rivalry = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 		}
 		
 	}
-
-	/* async function getScores(signal:any) {
-		console.log('getScores');
-		if (rivalOne && rivalTwo) {
-			const response = await fetch(`/score/${rivalOne.id}/${rivalTwo.id}`, {signal: signal})
-			const data = await response.json()
-			console.log(rivalOne.name + ' defeated ' + rivalTwo.name + ' ' + data.challengerWins + ' times. ' + rivalTwo.name + ' defeated '+ rivalOne.name + ' ' + data.defenderWins + ' times.');
-			setRivalData({
-				rivalOneWon: data.challengerWins,
-				rivalTwoWon: data.defenderWins
-			})
-			setShowResult(true)
-		} 
-	} */
 
 	const handleClickHamster = (x:Hamster) => {
 		console.log('clicked', x);
@@ -65,7 +51,8 @@ const Rivalry = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 		setHeader1('Rivalitet')
 		setHeader2('Jämför poängställningen mellan två hamstrar')
 		sendRequest(setAllHamsters)
-		}, [setHeader2, setHeader1])
+		setMobileNav(false)
+		}, [setHeader2, setHeader1, setMobileNav])
 
 	useEffect(() => {
 		const abortController = new AbortController()
@@ -89,40 +76,38 @@ const Rivalry = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
 
 	return (
 		<>
-		<section className="gallery-container"onChange={() => console.log('hej')}>
+		<section className="gallery-container">
 		{ allHamsters? 
 		
-		allHamsters.map(x => (
-			<article onClick={ () => !showResult? handleClickHamster(x): resetClickHamster()} 
-				className={ showResult? 'hamster-card': rivalOne?.id === x.id? 'hamster-card gallery-card opacity-card' : 'hamster-card gallery-card' } 
-				 key={x.id}
-			 >
-				{rivalOne?.id === x.id? 
-				<aside><FontAwesomeIcon icon={faCheck} /></aside>	:null
-				} 
-				{rivalTwo?.id === x.id? 
-				<aside><FontAwesomeIcon icon={faCheck} /></aside>	:null
-				} 
-
-
-				<li key={x.age+'h'+x.defeats} className="card-img-li" ><img className="card-img" src={`/img/${x.imgName}`} alt={x.name} /></li>
-				<h2 key={x.defeats+x.wins+'d'+x.age}>{x.name}</h2>
-				{
-				showResult && rivalOne?.id === x.id ? 
-					<article className={"info-overlay rivalry-overlay"}>
-						<li><h3> {rivalOne?.name} har vunnit över {rivalTwo?.name} { rivalData?.rivalOneWon } gånger.</h3></li>
-					</article>
-				:<article className={showResult &&rivalTwo?.id !== x.id ? 'other-card':''}></article>
-				}
-				{
-				showResult && rivalTwo?.id === x.id ? 
-					<article className="info-overlay rivalry-overlay">
-						<li><h3> {rivalTwo?.name} har vunnit över {rivalOne?.name} {rivalData?.rivalTwoWon} gånger.</h3></li>
-					</article>
-				:<article className={showResult &&rivalOne?.id !== x.id? 'other-card':''}></article>
-				}
+			allHamsters.map(x => (
+				<article onClick={ () => !showResult? handleClickHamster(x): resetClickHamster()} 
+					className={ showResult? 'hamster-card': rivalOne?.id === x.id? 'hamster-card gallery-card opacity-card' : 'hamster-card gallery-card' } 
+					key={x.id}
+				>
+					{rivalOne?.id === x.id? 
+					<aside><FontAwesomeIcon icon={faCheck} /></aside>	:null
+					} 
+					{rivalTwo?.id === x.id? 
+					<aside><FontAwesomeIcon icon={faCheck} /></aside>	:null
+					} 
+					<li key={x.age+'h'+x.defeats} className="card-img-li" ><img className="card-img" src={`/img/${x.imgName}`} alt={x.name} /></li>
+					<h2 key={x.defeats+x.wins+'d'+x.age}>{x.name}</h2>
+					{
+					showResult && rivalOne?.id === x.id ? 
+						<article className={"info-overlay rivalry-overlay"}>
+							<li><h3> {rivalOne?.name} har vunnit över {rivalTwo?.name} { rivalData?.rivalOneWon } gånger.</h3></li>
+						</article>
+					:<article className={showResult &&rivalTwo?.id !== x.id ? 'other-card':''}></article>
+					}
+					{
+					showResult && rivalTwo?.id === x.id ? 
+						<article className="info-overlay rivalry-overlay">
+							<li><h3> {rivalTwo?.name} har vunnit över {rivalOne?.name} {rivalData?.rivalTwoWon} gånger.</h3></li>
+						</article>
+					:<article className={showResult &&rivalOne?.id !== x.id? 'other-card':''}></article>
+					}
 							
-			</article>	
+				</article>	
 			))
 			: 'Loading hamsters...'}
 		

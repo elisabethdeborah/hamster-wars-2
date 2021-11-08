@@ -4,7 +4,7 @@ import Hamster from '../models/HamsterInterface'
 import HeaderProps from "../models/HeaderProps"
 
 
-const FightersSlackers = ({header1, setHeader1, header2, setHeader2}:HeaderProps) => {
+const FightersSlackers = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	const [ fighters, setFighters ] = useState<Hamster[] | null>(null)
 	const [ slackers, setSlackers ] = useState<Hamster[] | null>(null)
 
@@ -22,9 +22,10 @@ const FightersSlackers = ({header1, setHeader1, header2, setHeader2}:HeaderProps
 
 	useEffect(() => {
 		setHeader1('Fighters and Slackers')
+		setHeader2('')
 		sendRequest(setFighters, setSlackers)
-		
-	}, [setHeader1])
+		setMobileNav(false)
+	}, [setHeader1, setHeader2, setMobileNav])
 	
 
 	return (
