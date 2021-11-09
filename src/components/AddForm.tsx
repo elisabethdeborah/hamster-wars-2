@@ -126,15 +126,13 @@ const AddForm = ({show, set, setAllHamsters}:AddFormProps) => {
 			<input type="text" name="loves" placeholder="Hamsterns hobby" onChange={(e) => setLoves(e.target.value)} className={loveIsValid ? 'valid':' not-valid'} />
 			<input type="number" name="age" placeholder={clickedAgeField?" 0 ": "Hamstern ålder"} onChange={(e) => handleAge(Number(e.target.value))} className={ageIsValid ? 'age-inut valid':'age-inut not-valid'} />
 			<input type="text" name="favFood" placeholder="Hamsterns favvo-mat" onChange={(e) => setFavFood(e.target.value)}  className={foodIsValid ? 'valid':' not-valid'} />
-			<section className="img-name-section">
-				<article>
-					<input disabled={isChecked} type="text" name="imgName" placeholder="Url till hamsterbild" onChange={(e) => handleImg(e.target.value)}  className={imgIsValid ? 'img-input-valid valid':' not-valid'}/>
-					{ 
-					imgIsValid && !isChecked ?
-						<img src={imgName} alt="preview hamsterbild" />
-						: null
-					}
-				</article>
+			<section className={ imgIsValid && !isChecked? "img-name-section img-preview" : "img-name-section"}>
+				<input disabled={isChecked} type="text" name="imgName" placeholder="Url till hamsterbild" onChange={(e) => handleImg(e.target.value)} className={imgIsValid ? 'img-input-valid valid':' not-valid'}/>
+				{ 
+				imgIsValid && !isChecked ?
+					<img src={imgName} alt="preview hamsterbild" />
+					: null
+				}
 			
 				<CheckboxLabels handleCheckbox={handleCheckbox} checked={isChecked} label={showImgInfo ? 'Fyll i url till en bild på nätet eller kryssa i rutan för att slumpa fram en bild från vårt galleri.': 'Slumpar hamsterbild!'}/>
 			</section>

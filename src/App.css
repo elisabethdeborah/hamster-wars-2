@@ -327,6 +327,12 @@ aside.remove-gallery-card {
     right: .5em;
 }
 
+aside.rival-check {
+	font-size: 1em;
+	top: 2em;
+	right: 2em;
+}
+
 .fa-check {
 	color: green;
 	position: relative;
@@ -455,7 +461,7 @@ aside.remove-gallery-card {
 
 .add-form h1 {
 	color: var(--background);
-	font-size: 3.1em;
+	font-size: 2.5em;
 	margin-block-end: 0.5em;
 }
 
@@ -484,34 +490,46 @@ aside.remove-gallery-card {
 }
 
 .img-name-section {
-	width: 65%;
+	/* width: 65%; */
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	margin-left: -2em;
+/* 	margin-left: -2em; */
 	position: relative;
 }
 
-.img-name-section article {
+.img-name-section.img-preview {
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	align-items: flex-start;
+	width: auto;
 }
 
 .img-name-section img {
 	height: 50px;
 	width: 50px;
-	position: relative;
-	top: 0;
-	right: 0;
+	position: absolute;
+	top: 0.2em;
+	right: 0.5em;
+	border-radius: 10px;
+}
+.MuiFormGroup-root {
+	padding: 0 3em;
 }
 
-.img-name-section input {
+/* .img-name-section.img-preview .MuiFormGroup-root {
+	padding: 0;
+} */
+/* 
+.img-name-section.img-preview {
 	width: 100%;
-}
+} */
 
-input.img-input-valid {
+.img-name-section.img-preview input.img-input-valid:not(input:disabled) {
 	width: 50%;
+	margin: .5em 0;
 }
 
 .img-name-section span {

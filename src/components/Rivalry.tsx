@@ -85,10 +85,10 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 					key={x.id}
 				>
 					{rivalOne?.id === x.id? 
-					<aside><FontAwesomeIcon icon={faCheck} /></aside>	:null
+					<aside className="rival-check"><FontAwesomeIcon icon={faCheck} /></aside>	:null
 					} 
 					{rivalTwo?.id === x.id? 
-					<aside><FontAwesomeIcon icon={faCheck} /></aside>	:null
+					<aside className="rival-check"><FontAwesomeIcon icon={faCheck} /></aside>	:null
 					} 
 					<li key={x.age+'h'+x.defeats} className="card-img-li" ><img className="card-img" src={`/img/${x.imgName}`} alt={x.name} /></li>
 					<h2 key={x.defeats+x.wins+'d'+x.age}>{x.name}</h2>
