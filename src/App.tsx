@@ -54,15 +54,15 @@ function App() {
 		</header>
 		<main>
 			<Switch>
-				<Route path="/" exact> <Start setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
-				<Route path="/gallery"> <Gallery setMobileNav={setMobilNav}  setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
-				<Route path="/compete"> <Competition setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
-				<Route path="/statistik"> <Statistik setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
-				<Route path="/historik"> <Historik setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/" exact> <Start setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters} /> </Route>
+				<Route path="/gallery"> <Gallery setMobileNav={setMobilNav}  setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters} setAllHamsters={setAllHamsters}/> </Route>
+				<Route path="/compete"> <Competition setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters}/> </Route>
+				<Route path="/statistik"> <Statistik setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters}/> </Route>
+				<Route path="/historik"> <Historik setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters}/> </Route>
 				<Route path="/hamsters/"> <Redirect to="/gallery" /></Route>
-				<Route path="/rivalry"> <Rivalry setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
-				<Route path="/fightersslackers"> <FightersSlackers setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /></Route>
-				<Route path="/"> <BadUrl setHeader1={setHeader1} setHeader2={setHeader2} setMobileNav={setMobilNav} /> </Route>
+				<Route path="/rivalry"> <Rivalry setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters}/> </Route>
+				<Route path="/fightersslackers"> <FightersSlackers setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters}/></Route>
+				<Route path="/"> <BadUrl setHeader1={setHeader1} setHeader2={setHeader2} setMobileNav={setMobilNav} allHamsters={allHamsters}/> </Route>
 
 			</Switch>
 		</main>

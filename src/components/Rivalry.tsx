@@ -10,16 +10,16 @@ interface RivalData {
 	rivalTwoWon: number
 }
 
-const Rivalry = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
+const Rivalry = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProps) => {
 	const [ rivalOne, setRivalOne ] = useState<Hamster | null>(null)
 	const [ rivalTwo, setRivalTwo ] = useState<Hamster | null>(null)
 	const [ rivalData, setRivalData ] = useState<RivalData | null>(null)
 	const [ contestantsSet, setContestantsSet ] = useState<boolean>(false)
 	const [ showResult, setShowResult ] = useState<boolean>(false)
-	const [ allHamsters, setAllHamsters ] = useState<Hamster[] | null>(null)
+	//const [ allHamsters, setAllHamsters ] = useState<Hamster[] | null>(null)
 
 
-	async function sendRequest(setAllHamsters:any) {
+/* 	async function sendRequest(setAllHamsters:any) {
 		try {
 			const response = await fetch('/hamsters')
 			const data = await response.json()
@@ -28,8 +28,9 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 			console.log('error:', error);
 		}
 		
-	}
+	} */
 
+	//sätter klickad hamster som rival 1 eller rival 2, efter ordningen på klickningarna
 	const handleClickHamster = (x:Hamster) => {
 		console.log('clicked', x);
 		if (!rivalOne && !rivalTwo) {
@@ -39,7 +40,7 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 			setContestantsSet(true)
 		}
 	}
-
+	//nollställer jämförelsen
 	const resetClickHamster = () => {
 		setRivalOne(null)
 		setRivalTwo(null)
@@ -50,10 +51,12 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	useEffect(() => {
 		setHeader1('Rivalitet')
 		setHeader2('Jämför poängställningen mellan två hamstrar')
-		sendRequest(setAllHamsters)
+		//sendRequest(setAllHamsters)
 		setMobileNav(false)
 		}, [setHeader2, setHeader1, setMobileNav])
 
+
+	//fetchar den inbördes poängställningen mellan valda hamstrarna, när det finns valda hamstrar i state	
 	useEffect(() => {
 		const abortController = new AbortController()
 		const signal = abortController.signal;

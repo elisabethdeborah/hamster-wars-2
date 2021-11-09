@@ -10,8 +10,10 @@ const Card= ({hamster, hamsters, setHamsters}:CardProps) => {
 	const [ matchesWon, setMatchesWon ] = useState<Matches[] | null>(null)
 	const [ showDisplayHamster, setShowDisplayHamster ] = useState<boolean>(false)
 	const [ displayHamster, setDisplayHamster ] = useState<Hamster | null>(null)
+	//src till hamster-bild som finns i hamster-mappen, om inte en url som innehåller "http" har skrivits in i input-fältet
 	const [ src, setSrc] = useState<string>(hamster.imgName.includes('http') ? hamster.imgName:`/img/${hamster.imgName}`)
 	
+	//hämtar alla matchobjekt där vald hamster är vinnaren från databasen
 	const getMatchesWon = async(x:Hamster) => {
 		try {
 			let response = await fetch("/matchWinners/"+x.id, {method: 'get'})
@@ -34,6 +36,7 @@ const Card= ({hamster, hamsters, setHamsters}:CardProps) => {
 				}}
 				return matchesWon
 			})
+			//lägger vunna matcher i matcheswon-state
 			setMatchesWon(matchesWon)
 		} catch (error) {
 			setMatchesWon(null)
@@ -41,13 +44,14 @@ const Card= ({hamster, hamsters, setHamsters}:CardProps) => {
 		}
 	}
 
+	//fetchar individuell hamsters info
 	const handleShowInfo = (x:Hamster) => {
 		fetch("/hamsters/"+x.id, {method: 'get'})
 		getMatchesWon(x)
 		setShowDisplayHamster(!showDisplayHamster)
 		setDisplayHamster(x)
 	}
-
+	//deletear hamstern som klickas på
 	const handleDelete = (x:Hamster) => {
 		if (hamsters){
 			let index:number = hamsters?.findIndex(i => i.id === x.id)

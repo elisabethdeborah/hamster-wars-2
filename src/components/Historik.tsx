@@ -1,15 +1,16 @@
 
 import { useState, useEffect } from "react"
-import Hamster from "../models/HamsterInterface"
+//import Hamster from "../models/HamsterInterface"
 import HeaderProps from "../models/HeaderProps"
 import Match from '../models/MatchInterface'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons"
 
-const Historik = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
+const Historik = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProps) => {
 	const [ matches, setMatches ] = useState<Match[] | null>(null)
-	const [ hamsters, setHamsters ] = useState<Hamster[] | null>(null)
+	//const [ hamsters, setHamsters ] = useState<Hamster[] | null>(null)
 
+	//hämtar alla matcher från databasen
 	async function sendRequest(setMatches:any) {
 		try {
 			const response = await fetch('/matches')
@@ -20,12 +21,13 @@ const Historik = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 		}
 		
 	}
-	async function sendHamsterRequest(setHamsters:any) {
+	/* async function sendHamsterRequest(setHamsters:any) {
 		const response = await fetch('/hamsters')
 		const data = await response.json()
 		setHamsters(data)
-	}
+	} */
 
+	//deletar match i databasen som har samma id som matchen som klickas på
 	const handleDelete = (x:Match) => {
 		if (matches){
 			let index:number = matches?.findIndex(i => i.id === x.id)
@@ -40,7 +42,7 @@ const Historik = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 		setHeader1('Historik')
 		setHeader2('Alla matcher som spelats')
 		sendRequest(setMatches)
-		sendHamsterRequest(setHamsters)
+		//sendHamsterRequest(setHamsters)
 		setMobileNav(false)
 	}, [setHeader2, setHeader1, setMobileNav])
 
@@ -52,7 +54,7 @@ const Historik = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 		matches.map(m => (
 				<section className='match-item' key={m.id} >
 					{
-						hamsters?.map(x =>{
+						allHamsters?.map(x =>{
 							if (x.id===m.winnerId ){
 								return <article key={x.id+m.winnerId} className='history-card' >
 									 <li><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
