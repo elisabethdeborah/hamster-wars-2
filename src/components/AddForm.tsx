@@ -25,12 +25,15 @@ const AddForm = ({show, set, setAllHamsters}:AddFormProps) => {
 	function validateName(name:string):boolean {
 		return name.length >= 2
 	}
+
 	function validateLove(loves:string):boolean {
 		return loves.length >= 2
 	}
+
 	function validateFood(favFood:string):boolean {
 		return favFood.length >= 2
 	}
+
 	function validateImg(imgName:string, isChecked:boolean):boolean {
 
 		let testString =imgName.split('')
@@ -54,8 +57,6 @@ const AddForm = ({show, set, setAllHamsters}:AddFormProps) => {
 			console.log('fetch:', input);
 		}
 	}
-
-
 
 	const handleCheckbox = (checked:boolean) => {
 		console.log(checked);
@@ -115,30 +116,30 @@ const AddForm = ({show, set, setAllHamsters}:AddFormProps) => {
 		setAllHamsters(data)
 	}
 
-	
-
 	return (
 		<>
 		<section className="form-background-overlay"></section>
 		<form className="add-form">
-			<aside onClick={() => set(!show)}>Close</aside>
-			<h1> Add Hamster </h1>
-			<input type="text" name="name" onChange={(e) => setName(e.target.value)} placeholder="Hamster Name" className={nameIsValid ? 'name-inut valid':'name-inut not-valid'} />
-			<input type="text" name="loves" placeholder="Hamster Loves to ..." onChange={(e) => setLoves(e.target.value)} className={loveIsValid ? 'valid':' not-valid'} />
-			<input type="number" name="age" placeholder={clickedAgeField?" 0 ": "Hamster age"} onChange={(e) => handleAge(Number(e.target.value))} className={ageIsValid ? 'age-inut valid':'age-inut not-valid'} />
-			<input type="text" name="favFood" placeholder="Hamster's favorite food" onChange={(e) => setFavFood(e.target.value)}  className={foodIsValid ? 'valid':' not-valid'} />
+			<aside onClick={() => set(!show)}>Stäng</aside>
+			<h1> Lägg till hamster </h1>
+			<input type="text" name="name" onChange={(e) => setName(e.target.value)} placeholder="Hamsterns namn" className={nameIsValid ? 'name-inut valid':'name-inut not-valid'} />
+			<input type="text" name="loves" placeholder="Hamsterns hobby" onChange={(e) => setLoves(e.target.value)} className={loveIsValid ? 'valid':' not-valid'} />
+			<input type="number" name="age" placeholder={clickedAgeField?" 0 ": "Hamstern ålder"} onChange={(e) => handleAge(Number(e.target.value))} className={ageIsValid ? 'age-inut valid':'age-inut not-valid'} />
+			<input type="text" name="favFood" placeholder="Hamsterns favvo-mat" onChange={(e) => setFavFood(e.target.value)}  className={foodIsValid ? 'valid':' not-valid'} />
 			<section className="img-name-section">
 				<article>
-				<input disabled={isChecked} type="text" name="imgName" placeholder="Hamster image url" onChange={(e) => handleImg(e.target.value)}  className={imgIsValid ? 'img-input-valid valid':' not-valid'}/>
-				{ imgIsValid ?
-				<img src={imgName} alt="preview hamsterbild" />: null
-			}
-			</article>
+					<input disabled={isChecked} type="text" name="imgName" placeholder="Url till hamsterbild" onChange={(e) => handleImg(e.target.value)}  className={imgIsValid ? 'img-input-valid valid':' not-valid'}/>
+					{ 
+					imgIsValid && !isChecked ?
+						<img src={imgName} alt="preview hamsterbild" />
+						: null
+					}
+				</article>
 			
 				<CheckboxLabels handleCheckbox={handleCheckbox} checked={isChecked} label={showImgInfo ? 'Fyll i url till en bild på nätet eller kryssa i rutan för att slumpa fram en bild från vårt galleri.': 'Slumpar hamsterbild!'}/>
 			</section>
 			
-			<button type="button" value="Add" onClick={() => handleAddHamster()} disabled={!nameIsValid || !loveIsValid || !ageIsValid || !foodIsValid || !imgIsValid}> Add </button>
+			<button type="button" value="Add" onClick={() => handleAddHamster()} disabled={!nameIsValid || !loveIsValid || !ageIsValid || !foodIsValid || !imgIsValid}> Skapa </button>
 		</form>
 		</>
 	)

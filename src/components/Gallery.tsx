@@ -29,7 +29,7 @@ const Gallery = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	
 	return (
 		<>
-			<button className="add-hamster-btn" onClick={() => setShowAddForm(!showAddForm)}>Add Hamster</button>
+			<button className="add-hamster-btn" onClick={() => setShowAddForm(!showAddForm)}>Lägg till hamster</button>
 			{ showAddForm ? 
 				<AddForm show={showAddForm} set={setShowAddForm} allHamsters={allHamsters} setAllHamsters={setAllHamsters} />
 			: null}
