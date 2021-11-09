@@ -10,7 +10,6 @@ const HamsterImgs = () => {
 
 
 	async function sendRequest(saveData:any) {
-		const baseUrl = 'http://localhost:1337/hamsters'
 		const response = await fetch('cutest')
 		const data = await response.json()
 		saveData(data)

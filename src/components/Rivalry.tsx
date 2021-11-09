@@ -16,19 +16,6 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProp
 	const [ rivalData, setRivalData ] = useState<RivalData | null>(null)
 	const [ contestantsSet, setContestantsSet ] = useState<boolean>(false)
 	const [ showResult, setShowResult ] = useState<boolean>(false)
-	//const [ allHamsters, setAllHamsters ] = useState<Hamster[] | null>(null)
-
-
-/* 	async function sendRequest(setAllHamsters:any) {
-		try {
-			const response = await fetch('/hamsters')
-			const data = await response.json()
-			setAllHamsters(data)
-		} catch (error) {
-			console.log('error:', error);
-		}
-		
-	} */
 
 	//sätter klickad hamster som rival 1 eller rival 2, efter ordningen på klickningarna
 	const handleClickHamster = (x:Hamster) => {
@@ -51,7 +38,6 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProp
 	useEffect(() => {
 		setHeader1('Rivalitet')
 		setHeader2('Jämför poängställningen mellan två hamstrar')
-		//sendRequest(setAllHamsters)
 		setMobileNav(false)
 		}, [setHeader2, setHeader1, setMobileNav])
 
@@ -93,7 +79,7 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProp
 					{rivalTwo?.id === x.id? 
 					<aside className="rival-check"><FontAwesomeIcon icon={faCheck} /></aside>	:null
 					} 
-					<li key={x.age+'h'+x.defeats} className="card-img-li" ><img className="card-img" src={`/img/${x.imgName}`} alt={x.name} /></li>
+					<li key={x.age+'h'+x.defeats} className="card-img-li" ><img className="card-img" src={x.imgName.includes('http') ? x.imgName : `/img/${x.imgName}`} alt={x.name} /></li>
 					<h2 key={x.defeats+x.wins+'d'+x.age}>{x.name}</h2>
 					{
 					showResult && rivalOne?.id === x.id ? 

@@ -40,7 +40,7 @@ const FightersSlackers = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) =
 		
 		fighters.map(x => (
 				<article className='hamster-card' key={x.id} >
-					<li><img src={`/img/${x.imgName}`} alt={x.name} /></li>
+					<li><img src={x.imgName.includes('http') ? x.imgName : `/img/${x.imgName}`} alt={x.name} /></li>
 					<li><h3>Name: </h3> <h3 className="hamster-name">{x.name}</h3></li>
 					<li><h3>Wins: </h3> {x.wins} </li>
 					<li><h3>Defeats: </h3> {x.defeats} </li>
@@ -58,7 +58,7 @@ const FightersSlackers = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) =
 		
 		slackers.map(x => (
 				<article className='hamster-card' key={x.id} >
-					<li><img src={`/img/${x.imgName}`} alt={x.name} /></li>
+					<li><img src={x.imgName.includes('http') ? x.imgName : `/img/${x.imgName}`} alt={x.name} /></li>
 					<li><h3>Name: </h3> <h3 className="hamster-name">{x.name}</h3></li>
 					<li><h3>Wins: </h3> {x.wins} </li>
 					<li><h3>Defeats: </h3> {x.defeats} </li>

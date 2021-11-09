@@ -105,7 +105,7 @@ const Competition = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 					!doneLoadingUpdate && !winner && !loser ? 
 						contestants.map(x => (
 							<article onClick={!showResult? () => handleClick(x, contestants?.filter(l=>l!==x)[0]): undefined} className={showResult?'hamster-card': 'hamster-card game-card'} key={x.id} >
-								<li><img src={`/img/${x.imgName}`} alt={x.name} /></li>
+								<li><img src={x.imgName.includes('http') ? x.imgName : `/img/${x.imgName}`} alt={x.name} /></li>
 								<h2 className="hamster-name">{x.name}</h2>
 							</article>
 						)) 
@@ -117,12 +117,12 @@ const Competition = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 						{
 						<>
 							<article className={'hamster-card'} key={winner.id} >
-								<li><img src={`/img/${winner.imgName}`} alt={winner.name} /></li>
+								<li><img src={winner.imgName.includes('http') ? winner.imgName : `/img/${winner.imgName}`} alt={winner.name} /></li>
 								<h2 className="hamster-name">{winner.name}</h2>
 								<ResultsInfoOverlay hamster={winner} place={'winner'} />
 							</article>
 							<article className={'hamster-card'} key={loser.id} >
-								<li><img src={`/img/${loser.imgName}`} alt={loser.name} /></li>
+								<li><img src={loser.imgName.includes('http') ? loser.imgName : `/img/${loser.imgName}`} alt={loser.name} /></li>
 								<h2 className="hamster-name">{loser.name}</h2>
 								<ResultsInfoOverlay hamster={loser} place={'loser'} />
 							</article>

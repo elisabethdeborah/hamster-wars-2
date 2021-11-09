@@ -38,7 +38,7 @@ const Cutest = () => {
 			cutestHamster? 
 				cutestHamster.map(x => (
 					<article className='hamster-card cutest-hamster' key={x.id} >
-						<img src={`/img/${x.imgName}`} alt={x.name} />
+						<img src={x.imgName.includes('http') ? x.imgName : `/img/${x.imgName}`} alt={x.name} />
 						<h2> Defending Champion </h2>
 						<h3>Det här är {x.name}</h3>
 						<p>{x.name} har spelat {x.games} matcher och vunnit hela {x.wins}! </p> 

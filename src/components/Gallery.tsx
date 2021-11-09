@@ -1,8 +1,6 @@
 
 import { useState, useEffect } from "react"
 import GalleryProps from "../models/GalleryProps"
-//import Hamster from '../models/HamsterInterface'
-//import HeaderProps from "../models/HeaderProps"
 import AddForm from './AddForm'
 import Card from "./Card"
 
@@ -10,19 +8,12 @@ import Card from "./Card"
 
 const Gallery = ({ setHeader1, setHeader2, setMobileNav, allHamsters, setAllHamsters}:GalleryProps) => {
 
-	//const [ allHamsters, setAllHamsters ] = useState<Hamster[] | null>(null)
 	const [ showAddForm, setShowAddForm ] = useState<boolean>(false)
 
-	/* async function sendRequest(saveData:any) {
-		const response = await fetch('/hamsters')
-		const data = await response.json()
-		saveData(data)
-	} */
 
 	useEffect(() => {
 		setHeader1('Hamsters')
 		setHeader2('Kolla in alla hamstrar')
-		//sendRequest(setAllHamsters)
 		setMobileNav(false)
 	}, [setHeader1, setHeader2, setMobileNav])
 

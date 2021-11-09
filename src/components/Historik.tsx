@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from "react"
-//import Hamster from "../models/HamsterInterface"
 import HeaderProps from "../models/HeaderProps"
 import Match from '../models/MatchInterface'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,7 +7,6 @@ import { faMinusCircle } from "@fortawesome/free-solid-svg-icons"
 
 const Historik = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProps) => {
 	const [ matches, setMatches ] = useState<Match[] | null>(null)
-	//const [ hamsters, setHamsters ] = useState<Hamster[] | null>(null)
 
 	//hämtar alla matcher från databasen
 	async function sendRequest(setMatches:any) {
@@ -18,14 +16,8 @@ const Historik = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderPro
 			setMatches(data)
 		} catch (error) {
 			console.log('error:', error);
-		}
-		
+		}	
 	}
-	/* async function sendHamsterRequest(setHamsters:any) {
-		const response = await fetch('/hamsters')
-		const data = await response.json()
-		setHamsters(data)
-	} */
 
 	//deletar match i databasen som har samma id som matchen som klickas på
 	const handleDelete = (x:Match) => {
@@ -42,7 +34,6 @@ const Historik = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderPro
 		setHeader1('Historik')
 		setHeader2('Alla matcher som spelats')
 		sendRequest(setMatches)
-		//sendHamsterRequest(setHamsters)
 		setMobileNav(false)
 	}, [setHeader2, setHeader1, setMobileNav])
 
@@ -57,12 +48,12 @@ const Historik = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderPro
 						allHamsters?.map(x =>{
 							if (x.id===m.winnerId ){
 								return <article key={x.id+m.winnerId} className='history-card' >
-									 <li><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
+									 <li><img className="matches-img" src={x.imgName.includes('http') ? x.imgName : `/img/${x.imgName}`} alt={x.name} />
 								<h3>Vinnare: </h3> {x.name} </li>
 								</article>
 							} else if (x.id===m.loserId ){
 								return <article  key={x.id+m.loserId} className='history-card' >
-									<li><img className="matches-img" src={`/img/${x.imgName}`} alt={x.name} />
+									<li><img className="matches-img" src={x.imgName.includes('http') ? x.imgName : `/img/${x.imgName}`} alt={x.name} />
 								<h3>Förlorare: </h3> {x.name} </li>
 								</article>
 							} else {
