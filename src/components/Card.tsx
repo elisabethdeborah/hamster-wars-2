@@ -26,12 +26,10 @@ const Card= ({hamster, hamsters, setHamsters}:CardProps) => {
 			matchesWon.map((x:Matches, index:number)=>{
 				if (index>0){
 				if (x.loserId === matchesWon[index-1].loserId) {
-					console.log('same', x.loserId, matchesWon[index-1].loserId, 'index:', index);
 					matchesWon.splice(index,1)
 				}
 				} else if (index===0 && matchesWon.length > 2) {
 					if (x.loserId === matchesWon[index+1].loserId){
-					console.log('same first', x.loserId, matchesWon[index+1].loserId, 'index:', index);
 					matchesWon.splice(index,1)
 				}}
 				return matchesWon
@@ -40,7 +38,6 @@ const Card= ({hamster, hamsters, setHamsters}:CardProps) => {
 			setMatchesWon(matchesWon)
 		} catch (error) {
 			setMatchesWon(null)
-			console.log('error: ', error);
 		}
 	}
 
@@ -81,7 +78,6 @@ const Card= ({hamster, hamsters, setHamsters}:CardProps) => {
 						<li><h3>Defeats: </h3> {hamster.defeats} </li>
 						<li><h3>Games: </h3> {hamster.games} </li>
 						{matchesWon? <h3>Defeated: </h3> :null}
-						{matchesWon ? console.log(matchesWon):null}
 						{
 						matchesWon?
 							matchesWon.map(match => {

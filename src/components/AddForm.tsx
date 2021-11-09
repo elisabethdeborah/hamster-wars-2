@@ -53,13 +53,9 @@ const AddForm = ({show, set, setAllHamsters}:AddFormProps) => {
 
 	const handleImg = (input:string) => {
 		setImgName(input)
-		if (imgIsValid) {
-			console.log('fetch:', input);
-		}
 	}
 
 	const handleCheckbox = (checked:boolean) => {
-		console.log(checked);
 		setChecked(checked)
 		if ( checked ) {
 			setImgName(`/hamster-${Math.ceil(Math.random()*40)}.jpg`)
@@ -95,7 +91,6 @@ const AddForm = ({show, set, setAllHamsters}:AddFormProps) => {
 		}
 		await updateWinner(newHamster)
 		await updateGallery(setAllHamsters)
-		console.log('newHamster:', newHamster);
 		set(false)
 	}
 

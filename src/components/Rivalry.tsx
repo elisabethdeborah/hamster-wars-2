@@ -19,7 +19,6 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProp
 
 	//sätter klickad hamster som rival 1 eller rival 2, efter ordningen på klickningarna
 	const handleClickHamster = (x:Hamster) => {
-		console.log('clicked', x);
 		if (!rivalOne && !rivalTwo) {
 			setRivalOne(x)
 		} else if (rivalOne && !rivalTwo) {
@@ -50,7 +49,6 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProp
 			if (rivalOne && rivalTwo) {
 				const response = await fetch(`/score/${rivalOne.id}/${rivalTwo.id}`, {signal: signal})
 				const data = await response.json()
-				console.log(rivalOne.name + ' defeated ' + rivalTwo.name + ' ' + data.challengerWins + ' times. ' + rivalTwo.name + ' defeated '+ rivalOne.name + ' ' + data.defenderWins + ' times.');
 				setRivalData({
 					rivalOneWon: data.challengerWins,
 					rivalTwoWon: data.defenderWins

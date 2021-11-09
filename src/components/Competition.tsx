@@ -78,7 +78,6 @@ const Competition = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	}
 
 	const handleClick = async(x:Hamster, y:Hamster) => {
-		console.log('showResult:', showResult);
 		
 		await updateMatches(x, y)
 		await updateLoser(y)

@@ -16,7 +16,6 @@ const Cutest = () => {
 				saveData(data)
 			}
 		} catch (error) {
-			console.log(error);
 			setError(true)
 		}
 	}
