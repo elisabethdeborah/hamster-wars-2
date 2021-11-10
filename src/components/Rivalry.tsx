@@ -50,6 +50,7 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 		setHeader1('Rivalitet')
 		setHeader2('Jämför poängställningen mellan två hamstrar')
 		setMobileNav(false)
+		sendRequest(setAllHamsters)
 		}, [setHeader2, setHeader1, setMobileNav])
 
 

@@ -6,18 +6,26 @@ const ResultsInfoOverlay = ({hamster, place}:ResultsProps) => {
 
 	const [info, setInfo] = useState<Hamster|null>(null)
 	console.log( 'params:', hamster.name, hamster.wins, hamster.defeats, hamster.games);
+
+	
+	
  	useEffect(() => {
-		async function fetchUpdated() {
+		const abortController = new AbortController()
+		const signal = abortController.signal;
+		async function fetchUpdated(signal: any) {
 			const response = await fetch("/hamsters/"+hamster.id, {
-				method: 'get'
+				method: 'get',
+				signal: signal
 			})
 			const info = await response.json()
-			//console.log(hamster.name, 'info:', info);
+			console.log('info:', info);
 			setInfo(info)
 		}
-		fetchUpdated()
+		fetchUpdated(signal)
+		return () => abortController.abort()
 		
-	}, [hamster.id])
+	}, [ hamster.id])
+
 
 	return (
 		<>
