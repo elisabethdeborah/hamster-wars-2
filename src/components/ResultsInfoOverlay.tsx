@@ -12,7 +12,7 @@ const ResultsInfoOverlay = ({hamster, place}:ResultsProps) => {
 				method: 'get'
 			})
 			const info = await response.json()
-			console.log(hamster.name, 'info:', info);
+			//console.log(hamster.name, 'info:', info);
 			setInfo(info)
 		}
 		fetchUpdated()

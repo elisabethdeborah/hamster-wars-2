@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from "react"
-import GalleryProps from "../models/GalleryProps"
 import AddForm from './AddForm'
 import Card from "./Card"
 import Hamster from "../models/HamsterInterface"

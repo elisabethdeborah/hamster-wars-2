@@ -1,6 +1,6 @@
 
 import './App.css';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Gallery from './components/Gallery';
 import Competition from './components/Competition';
 import Start from './components/Start';
@@ -12,28 +12,12 @@ import { Link, Switch, Route, Redirect, BrowserRouter as Router } from 'react-ro
 import Rivalry from './components/Rivalry';
 import Logo from './components/Logo';
 import HamsterHamburger from './components/HamsterHamburger';
-import Hamster from './models/HamsterInterface';
 
 
 function App() {
-	//const [allHamsters, setAllHamsters] = useState<Hamster[] | null>(null)
 	const [ header1, setHeader1 ] = useState<string >('')
 	const [ header2, setHeader2 ] = useState<string >('')
 	const [ mobileNav, setMobilNav ] = useState<boolean>(false)
-
-	/* async function sendRequest(setAllHamsters:any) {
-		try {
-			const response = await fetch('/hamsters')
-			const data = await response.json()
-			setAllHamsters(data)
-		} catch (error) {
-			console.log('error:', error);
-		}
-	} */
-
-/* 	useEffect(() => {
-		sendRequest(setAllHamsters)
-		}, []) */
 
   return (
     <div className="App">

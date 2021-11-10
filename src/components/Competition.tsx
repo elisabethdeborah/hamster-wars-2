@@ -101,9 +101,12 @@ const Competition = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 			<section className='contestants'>
 			{ contestants ?
 				<>
+				{console.log('showResult:',showResult)}
 				{
 					!doneLoadingUpdate && !winner && !loser ? 
+					
 						contestants.map(x => (
+							
 							<article onClick={!showResult? () => handleClick(x, contestants?.filter(l=>l!==x)[0]): undefined} className={showResult?'hamster-card': 'hamster-card game-card'} key={x.id} >
 								<li><img src={x.imgName.includes('http') ? x.imgName : `/img/${x.imgName}`} alt={x.name} /></li>
 								<h2 className="hamster-name">{x.name}</h2>
