@@ -18,7 +18,7 @@ const Gallery = ({ setHeader1, setHeader2, setMobileNav }:HeaderProps) => {
 			const data = await response.json()
 			setAllHamsters(data)
 		} catch (error) {
-			//console.log('error:', error);
+			console.log('error:', error);
 		}
 	}
 

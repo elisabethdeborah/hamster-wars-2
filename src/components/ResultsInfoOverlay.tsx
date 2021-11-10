@@ -5,9 +5,7 @@ import Hamster from "../models/HamsterInterface"
 const ResultsInfoOverlay = ({hamster, place}:ResultsProps) => {
 
 	const [info, setInfo] = useState<Hamster|null>(null)
-	//console.log( 'params:', hamster.name, hamster.wins, hamster.defeats, hamster.games);
 
-	
 	
  	useEffect(() => {
 		const abortController = new AbortController()
@@ -18,7 +16,6 @@ const ResultsInfoOverlay = ({hamster, place}:ResultsProps) => {
 				signal: signal
 			})
 			let info = await response.json()
-			/* console.log('fetched games:', info.games !== hamster.games, 'didnt fetch: ', info.games === hamster.games); */
 			setInfo(info)
 		}
 		fetchUpdated(signal)
