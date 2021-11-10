@@ -272,7 +272,7 @@ h1 {
 	background-color: rgba(36, 35, 35, 0.438);
 }
 
-.hamster-card:hover:not(.statistik .hamster-card:hover ) {
+.hamster-card:hover:not(.statistik .hamster-card:hover, .cutest-hamster ) {
 	cursor: pointer;
 }
 
@@ -433,7 +433,7 @@ aside.rival-check {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 500px;
+	height: 550px;
 	justify-content: flex-start;
 	width: 400px;
 	margin: 5em auto;
@@ -471,7 +471,7 @@ aside.rival-check {
 	padding: .5em 1em;
 	border-radius: 100px;
 	border: 2px solid var(--bg-opacity);
-	margin: .5em auto;
+	margin: .8em auto;
 	background-color: #ffffffaf;
 }
 
@@ -530,6 +530,21 @@ aside.rival-check {
 .img-name-section.img-preview input.img-input-valid:not(input:disabled) {
 	width: 50%;
 	margin: .5em 0;
+}
+
+.add-form span.input-alert {
+	font-size: .7em;
+	top: 5em;
+	width: 100%;
+	position: absolute;
+}
+
+.add-form article.add-hamster-input-art {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: 100%;
+	position: relative;
 }
 
 .img-name-section span {

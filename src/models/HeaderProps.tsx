@@ -4,7 +4,7 @@ interface HeaderProps {
 	setHeader1: any;
 	setHeader2: any;
 	setMobileNav: any;
-	allHamsters: Hamster[] | null
+//	allHamsters: Hamster[] | null
 }
 
 export default HeaderProps

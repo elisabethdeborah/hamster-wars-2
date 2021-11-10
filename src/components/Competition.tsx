@@ -1,5 +1,4 @@
 
-//import { abort } from "process"
 import { useState, useEffect } from "react"
 import Hamster from '../models/HamsterInterface'
 import HeaderProps from "../models/HeaderProps"
@@ -78,10 +77,12 @@ const Competition = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	}
 
 	const handleClick = async(x:Hamster, y:Hamster) => {
+		console.log('showResult:',showResult);
 		
 		await updateMatches(x, y)
-		await updateLoser(y)
+		
 		await updateWinner(x)
+		await updateLoser(y)
 		setDoneLoadingUpdate(true)
 	}
 

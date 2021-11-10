@@ -10,12 +10,23 @@ interface RivalData {
 	rivalTwoWon: number
 }
 
-const Rivalry = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProps) => {
+const Rivalry = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	const [ rivalOne, setRivalOne ] = useState<Hamster | null>(null)
 	const [ rivalTwo, setRivalTwo ] = useState<Hamster | null>(null)
 	const [ rivalData, setRivalData ] = useState<RivalData | null>(null)
 	const [ contestantsSet, setContestantsSet ] = useState<boolean>(false)
 	const [ showResult, setShowResult ] = useState<boolean>(false)
+	const [allHamsters, setAllHamsters] = useState<Hamster[] | null>(null)
+
+	async function sendRequest(setAllHamsters:any) {
+		try {
+			const response = await fetch('/hamsters')
+			const data = await response.json()
+			setAllHamsters(data)
+		} catch (error) {
+			console.log('error:', error);
+		}
+	}
 
 	//sätter klickad hamster som rival 1 eller rival 2, efter ordningen på klickningarna
 	const handleClickHamster = (x:Hamster) => {
@@ -28,6 +39,7 @@ const Rivalry = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProp
 	}
 	//nollställer jämförelsen
 	const resetClickHamster = () => {
+		sendRequest(setAllHamsters)
 		setRivalOne(null)
 		setRivalTwo(null)
 		setContestantsSet(false)

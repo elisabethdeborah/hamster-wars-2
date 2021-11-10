@@ -4,10 +4,12 @@ import HeaderProps from "../models/HeaderProps"
 import Match from '../models/MatchInterface'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons"
+import Hamster from "../models/HamsterInterface"
 
-const Historik = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderProps) => {
+const Historik = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	const [ matches, setMatches ] = useState<Match[] | null>(null)
-
+	const [ errorExists, setError ] = useState<boolean>(false)
+	const [ allHamsters, setAllHamsters ] = useState<Hamster[] | null>(null)
 	//hämtar alla matcher från databasen
 	async function sendRequest(setMatches:any) {
 		try {
@@ -16,7 +18,18 @@ const Historik = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderPro
 			setMatches(data)
 		} catch (error) {
 			console.log('error:', error);
+			setError(true)
 		}	
+	}
+
+	async function sendHamsterRequest(setAllHamsters:any) {
+		try {
+			const response = await fetch('/hamsters')
+			const data = await response.json()
+			setAllHamsters(data)
+		} catch (error) {
+			console.log('error:', error);
+		}
 	}
 
 	//deletar match i databasen som har samma id som matchen som klickas på
@@ -34,14 +47,20 @@ const Historik = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderPro
 		setHeader1('Historik')
 		setHeader2('Alla matcher som spelats')
 		sendRequest(setMatches)
+		sendHamsterRequest(setAllHamsters)
 		setMobileNav(false)
 	}, [setHeader2, setHeader1, setMobileNav])
 
 	
 	return (
 		<section className="matches-history">
-		<h2>{matches?.length} {matches && (matches.length > 1 || matches.length === 0) ?'matcher':'match'}</h2>
-		{ matches? 
+		{ 
+		!errorExists ?
+			<h2>{matches?.length} {matches && (matches.length > 1 || matches.length === 0) ?'matcher':'match'}</h2>
+			:''}
+		{
+		!errorExists ?
+		matches ? 
 		matches.map(m => (
 				<section className='match-item' key={m.id} >
 					{
@@ -65,7 +84,9 @@ const Historik = ({ setHeader1, setHeader2, setMobileNav, allHamsters}:HeaderPro
 				</section>
 			))
 			
-			: 'Laddar matcher...'}
+			: 'Laddar matcher...'
+		:<h2>Det finns inga matcher att visa!</h2>
+		}
 		
 		</section>
 	)

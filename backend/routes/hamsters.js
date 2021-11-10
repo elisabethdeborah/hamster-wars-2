@@ -45,7 +45,7 @@ router.get('/random', async(req, res) => {
 router.get('/:id', async(req, res) => { 
     let maybeHamster = await getOne(req.params.id)
     if (maybeHamster) {
-		console.log(maybeHamster);
+		console.log('maybeHamster is hamster:',maybeHamster);
         res.status(200).send(maybeHamster) 
     } else {
 		console.log('GET id failed');
@@ -83,7 +83,7 @@ router.put('/:id', async(req, res) => {
             res.sendStatus(400)
         } else {
         await updateOne(req.params.id, maybeHamster)
-		console.log('updated hamster: ', maybeHamster);
+		console.log('finished updating hamster: ',req.params.id, maybeHamster);
         res.sendStatus(200)
         }
     } catch (error) {

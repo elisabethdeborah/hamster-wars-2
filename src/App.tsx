@@ -16,12 +16,12 @@ import Hamster from './models/HamsterInterface';
 
 
 function App() {
-	const [allHamsters, setAllHamsters] = useState<Hamster[] | null>(null)
+	//const [allHamsters, setAllHamsters] = useState<Hamster[] | null>(null)
 	const [ header1, setHeader1 ] = useState<string >('')
 	const [ header2, setHeader2 ] = useState<string >('')
 	const [ mobileNav, setMobilNav ] = useState<boolean>(false)
 
-	async function sendRequest(setAllHamsters:any) {
+	/* async function sendRequest(setAllHamsters:any) {
 		try {
 			const response = await fetch('/hamsters')
 			const data = await response.json()
@@ -29,11 +29,11 @@ function App() {
 		} catch (error) {
 			console.log('error:', error);
 		}
-	}
+	} */
 
-	useEffect(() => {
+/* 	useEffect(() => {
 		sendRequest(setAllHamsters)
-		}, [])
+		}, []) */
 
   return (
     <div className="App">
@@ -54,15 +54,15 @@ function App() {
 		</header>
 		<main>
 			<Switch>
-				<Route path="/" exact> <Start setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters} /> </Route>
-				<Route path="/gallery"> <Gallery setMobileNav={setMobilNav}  setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters} setAllHamsters={setAllHamsters}/> </Route>
-				<Route path="/compete"> <Competition setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters}/> </Route>
-				<Route path="/statistik"> <Statistik setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters}/> </Route>
-				<Route path="/historik"> <Historik setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters}/> </Route>
+				<Route path="/" exact> <Start setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/gallery"> <Gallery setMobileNav={setMobilNav}  setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/compete"> <Competition setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/statistik"> <Statistik setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/historik"> <Historik setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
 				<Route path="/hamsters/"> <Redirect to="/gallery" /></Route>
-				<Route path="/rivalry"> <Rivalry setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters}/> </Route>
-				<Route path="/fightersslackers"> <FightersSlackers setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} allHamsters={allHamsters}/></Route>
-				<Route path="/"> <BadUrl setHeader1={setHeader1} setHeader2={setHeader2} setMobileNav={setMobilNav} allHamsters={allHamsters}/> </Route>
+				<Route path="/rivalry"> <Rivalry setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /> </Route>
+				<Route path="/fightersslackers"> <FightersSlackers setMobileNav={setMobilNav} setHeader1={setHeader1} setHeader2={setHeader2} /></Route>
+				<Route path="/"> <BadUrl setHeader1={setHeader1} setHeader2={setHeader2} setMobileNav={setMobilNav} /> </Route>
 
 			</Switch>
 		</main>
