@@ -17,7 +17,6 @@ const Historik = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 			const data = await response.json()
 			setMatches(data)
 		} catch (error) {
-			console.log('error:', error);
 			setError(true)
 		}	
 	}

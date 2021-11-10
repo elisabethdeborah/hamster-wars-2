@@ -41,7 +41,7 @@ const Cutest = () => {
 						<h2> Defending Champion </h2>
 						<h3>Det här är {x.name}</h3>
 						<p>{x.name} har spelat {x.games} matcher och vunnit hela {x.wins}! </p> 
-						<h4>Stort grattis {x.name}!</h4>
+						<h4>Heja {x.name}!</h4>
 					</article>
 				))
 				:'Laddar hamstrar...'

@@ -653,6 +653,10 @@ button:disabled, input:disabled {
 		width: 90vw;
 		margin: 0 auto;
 	}
+
+	.item-1 .cutest-hamster {
+		padding-bottom: 2em;
+	}
 	
 	nav.nav {
 		flex-direction: column;
@@ -722,6 +726,8 @@ button:disabled, input:disabled {
 	.add-form {
 		height: 80vh;
 		width: 95vw;
+		margin: 3em auto;
+		padding: 0 0 2em;
 	}
 
 	.hamster-card {
@@ -773,5 +779,18 @@ button:disabled, input:disabled {
 		position: absolute;
 		top: 1em;
 		right: 1em;
+	}
+
+	.img-name-section.img-preview {
+		width: 80%;
+	}
+
+	.img-name-section img {
+		right: 1.5em;
+	}
+
+	.img-name-section.img-preview input.img-input-valid:not(input:disabled) {
+		width: 50%;
+		margin: 0.5em 0.55em;
 	}
 }

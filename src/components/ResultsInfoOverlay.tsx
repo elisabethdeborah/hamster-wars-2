@@ -5,7 +5,7 @@ import Hamster from "../models/HamsterInterface"
 const ResultsInfoOverlay = ({hamster, place}:ResultsProps) => {
 
 	const [info, setInfo] = useState<Hamster|null>(null)
-	console.log( 'params:', hamster.name, hamster.wins, hamster.defeats, hamster.games);
+	//console.log( 'params:', hamster.name, hamster.wins, hamster.defeats, hamster.games);
 
 	
 	
@@ -13,18 +13,18 @@ const ResultsInfoOverlay = ({hamster, place}:ResultsProps) => {
 		const abortController = new AbortController()
 		const signal = abortController.signal;
 		async function fetchUpdated(signal: any) {
-			const response = await fetch("/hamsters/"+hamster.id, {
+			let response = await fetch("/hamsters/"+hamster.id, {
 				method: 'get',
 				signal: signal
 			})
-			const info = await response.json()
-			console.log('info:', info);
+			let info = await response.json()
+			/* console.log('fetched games:', info.games !== hamster.games, 'didnt fetch: ', info.games === hamster.games); */
 			setInfo(info)
 		}
 		fetchUpdated(signal)
 		return () => abortController.abort()
 		
-	}, [ hamster.id])
+	}, [ hamster.id, hamster.games])
 
 
 	return (

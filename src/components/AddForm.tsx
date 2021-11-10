@@ -168,16 +168,7 @@ const AddForm = ({show, set, setAllHamsters}:AddFormProps) => {
 				<input disabled={isChecked} type="text" name="imgName" placeholder="Url till hamsterbild" onChange={(e) => handleImg(e.target.value)} className={imgIsValid ? 'img-input-valid valid':' not-valid'}/>
 				{ 
 				imgIsValid && !isChecked ? 
-
-
-
-//FIXA EXTRA VILDERINGS-INFO, NÄR SIFFRONR 'ÄR UNDER 0 TEX, FÖRKLARA VARFÖR DET INTE FUNKAR!!
-//KOLLA ATT DEN INTE SLÄMGER PÅ +2 PÅ ALLA VINNARE/FÖRLORARE IGEN!
-
-
-
-
-					<img src={imgName} alt="preview hamsterbild" />
+					<img src={imgName.includes('http') ? imgName : `/img/${imgName}`} alt="preview hamsterbild" />
 					: null
 				}
 			

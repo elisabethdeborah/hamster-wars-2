@@ -54,7 +54,7 @@ const Competition = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 	}
 
 	const updateLoser =async(y:Hamster) =>{
-		setLoser(y)
+		
 		await fetch("/hamsters/"+y.id, {
 			method: 'put', 
 			body:JSON.stringify({ defeats: y.defeats+1, games: y.games+1}),
@@ -62,10 +62,11 @@ const Competition = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 				"Content-Type": "application/json"
 			}
 			})
+			setLoser(y)
 		}
 
 	const updateWinner = async(x:Hamster) => {
-		setWinner(x)
+		
 		//PUT update wins ++, games ++
 		await fetch("/hamsters/"+x.id, {
 			method: 'put', 
@@ -74,13 +75,11 @@ const Competition = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 				"Content-Type": "application/json"
 			}
 		})
+		setWinner(x)
 	}
 
 	const handleClick = async(x:Hamster, y:Hamster) => {
-		console.log('showResult:',showResult);
-		
 		await updateMatches(x, y)
-		
 		await updateWinner(x)
 		await updateLoser(y)
 		setDoneLoadingUpdate(true)
@@ -101,7 +100,6 @@ const Competition = ({ setHeader1, setHeader2, setMobileNav}:HeaderProps) => {
 			<section className='contestants'>
 			{ contestants ?
 				<>
-				{console.log('showResult:',showResult)}
 				{
 					!doneLoadingUpdate && !winner && !loser ? 
 					
