@@ -8,7 +8,7 @@ import {useEffect} from 'react'
 const Start = ({ setHeader1, setHeader2, setMobileNav }:HeaderProps) => {
 	useEffect(() => {
 		setHeader1('Hamster Wars!')
-		setHeader2('Såhär funkar det!')
+		setHeader2('Så här funkar det!')
 		setMobileNav(false)
 	}, [setHeader1, setHeader2, setMobileNav])
 
