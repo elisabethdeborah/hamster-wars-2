@@ -54,7 +54,7 @@ app.use('/score', scoreRouter)
 
 //behövs om man använder react router
 app.get('*', (req, res) => {
-	res.sendFile(__dirname + '/build/index.html')
+	res.sendFile(__dirname + '/../build/index.html')
 })
 
 
